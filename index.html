@@ -6,15 +6,155 @@
   <meta name="theme-color" content="#10B981">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>EcoQuest - 생태 탐험 앱</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>EcoQuest - 조경 2050 공모전</title>
+  <meta name="description" content="시민 참여형 조경 공간 생태 모니터링 플랫폼 - 조경 2050 공모전 프로토타입">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="app-container">
-    <!-- 상태바 (모바일 앱 느낌) -->
+  <!-- 인트로 스플래시 화면 -->
+  <div id="introScreen" class="intro-screen">
+    <div class="intro-content">
+      <!-- 파티클 배경 -->
+      <canvas id="introParticles" class="intro-particles"></canvas>
+
+      <!-- 로고 애니메이션 -->
+      <div class="intro-logo-container">
+        <div class="intro-logo">
+          <div class="logo-leaf leaf-1">🌿</div>
+          <div class="logo-leaf leaf-2">🍃</div>
+          <div class="logo-leaf leaf-3">🌱</div>
+          <div class="logo-circle"></div>
+        </div>
+        <h1 class="intro-title">EcoQuest</h1>
+        <p class="intro-subtitle">도시 생태계를 탐험하세요</p>
+      </div>
+
+      <!-- 서울 지도 애니메이션 -->
+      <div class="intro-map-animation">
+        <svg viewBox="0 0 400 300" class="seoul-map-svg">
+          <path class="seoul-outline" d="M200,50 Q280,60 320,100 Q350,150 340,200 Q320,250 260,270 Q200,280 140,260 Q80,240 60,180 Q50,120 80,80 Q120,40 200,50 Z"/>
+          <circle class="hotspot hotspot-1" cx="200" cy="120" r="8"/>
+          <circle class="hotspot hotspot-2" cx="150" cy="160" r="6"/>
+          <circle class="hotspot hotspot-3" cx="250" cy="180" r="7"/>
+          <circle class="hotspot hotspot-4" cx="180" cy="200" r="5"/>
+          <circle class="hotspot hotspot-5" cx="220" cy="150" r="9"/>
+        </svg>
+      </div>
+
+      <!-- 공모전 배지 -->
+      <div class="contest-badge">
+        <span class="badge-year">2050</span>
+        <span class="badge-text">조경 공모전</span>
+        <span class="badge-type">프로토타입</span>
+      </div>
+
+      <!-- 시작 버튼 -->
+      <button class="intro-start-btn" id="startAppBtn">
+        <span>탐험 시작하기</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+      <!-- 가이드 투어 버튼 -->
+      <button class="guide-tour-btn" onclick="startGuideTour()">
+        <span>🎯</span>
+        <span>심사위원용 3분 데모</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 온보딩 스토리 화면 -->
+  <div id="onboardingScreen" class="onboarding-screen hidden">
+    <div class="onboarding-container">
+      <!-- 슬라이드 1: 위기 -->
+      <div class="onboarding-slide active" data-slide="1">
+        <div class="slide-visual">
+          <div class="crisis-animation">
+            <div class="city-silhouette"></div>
+            <div class="pollution-overlay"></div>
+            <div class="species-fading">
+              <span class="fading-species">🦋</span>
+              <span class="fading-species">🐦</span>
+              <span class="fading-species">🌸</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-content">
+          <h2>도시의 생태계가<br><span class="highlight-red">위기에 처했습니다</span></h2>
+          <p>기후변화와 도시화로 서울의 생물다양성이<br>지난 30년간 <strong>40% 감소</strong>했습니다.</p>
+        </div>
+      </div>
+
+      <!-- 슬라이드 2: 솔루션 -->
+      <div class="onboarding-slide" data-slide="2">
+        <div class="slide-visual">
+          <div class="solution-animation">
+            <div class="phone-mockup">
+              <div class="phone-screen">📱</div>
+            </div>
+            <div class="data-streams">
+              <div class="stream stream-1">🦋</div>
+              <div class="stream stream-2">🐦</div>
+              <div class="stream stream-3">🌿</div>
+            </div>
+            <div class="cloud-icon">☁️</div>
+          </div>
+        </div>
+        <div class="slide-content">
+          <h2>시민 과학자가<br><span class="highlight-green">해답입니다</span></h2>
+          <p>당신의 스마트폰이 강력한 생태 모니터링 도구가 됩니다.<br>AI가 생물을 식별하고, 데이터가 연구에 활용됩니다.</p>
+        </div>
+      </div>
+
+      <!-- 슬라이드 3: 영웅 -->
+      <div class="onboarding-slide" data-slide="3">
+        <div class="slide-visual">
+          <div class="hero-animation">
+            <div class="hero-avatar">🌿</div>
+            <div class="hero-glow"></div>
+            <div class="achievement-badges">
+              <span class="badge-float">🏅</span>
+              <span class="badge-float">⭐</span>
+              <span class="badge-float">🏆</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-content">
+          <h2>당신이 바로<br><span class="highlight-gold">생태계의 영웅</span></h2>
+          <p>탐험하고, 발견하고, 보상받으세요.<br>당신의 모든 발견이 지구를 살립니다.</p>
+        </div>
+      </div>
+
+      <!-- 진행 표시 -->
+      <div class="onboarding-progress">
+        <div class="progress-dot active" data-dot="1"></div>
+        <div class="progress-dot" data-dot="2"></div>
+        <div class="progress-dot" data-dot="3"></div>
+      </div>
+
+      <!-- 네비게이션 -->
+      <div class="onboarding-nav">
+        <button class="skip-btn" onclick="skipOnboarding()">건너뛰기</button>
+        <button class="next-btn" onclick="nextSlide()">
+          <span id="nextBtnText">다음</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 메인 앱 -->
+  <div id="mainApp" class="app-container hidden">
+    <!-- 상태바 -->
     <div class="status-bar">
       <span class="time" id="statusTime">9:41</span>
       <div class="status-icons">
@@ -23,170 +163,279 @@
       </div>
     </div>
 
+    <!-- 가이드 투어 오버레이 -->
+    <div id="guideTourOverlay" class="guide-tour-overlay" style="display: none;">
+      <div class="guide-spotlight" id="guideSpotlight"></div>
+      <div class="guide-tooltip" id="guideTooltip">
+        <div class="tooltip-header">
+          <span class="tooltip-step" id="tooltipStep">1/7</span>
+          <button class="tooltip-close" onclick="endGuideTour()">✕</button>
+        </div>
+        <h3 id="tooltipTitle">홈 대시보드</h3>
+        <p id="tooltipDesc">사용자의 레벨, XP, 에코토큰을 한눈에 확인할 수 있습니다.</p>
+        <div class="tooltip-nav">
+          <button class="tooltip-prev" onclick="prevGuideStep()">← 이전</button>
+          <button class="tooltip-next" onclick="nextGuideStep()">다음 →</button>
+        </div>
+      </div>
+      <div class="guide-progress-bar">
+        <div class="guide-progress-fill" id="guideProgressFill"></div>
+      </div>
+    </div>
+
     <!-- 메인 컨텐츠 영역 -->
     <main class="main-content">
 
-      <!-- 1. 홈 화면 (Dashboard) -->
+      <!-- 1. 홈 화면 -->
       <section id="screen-home" class="screen active">
-        <header class="screen-header">
-          <h1>EcoQuest</h1>
+        <header class="screen-header home-header">
+          <div class="header-left">
+            <h1 class="app-logo">EcoQuest</h1>
+            <span class="contest-mini-badge">조경2050</span>
+          </div>
           <button class="btn-icon" onclick="showScreen('profile')">
             <span class="user-avatar">🌿</span>
           </button>
         </header>
 
         <div class="screen-body">
-          <!-- 사용자 프로필 카드 -->
-          <div class="profile-card">
+          <!-- 사용자 프로필 카드 - 강화 -->
+          <div class="profile-card hero-card">
+            <div class="hero-card-bg"></div>
             <div class="profile-info">
-              <div class="avatar-large">🌿</div>
+              <div class="avatar-large animated-avatar">
+                <span class="avatar-emoji">🌿</span>
+                <div class="avatar-ring"></div>
+                <div class="avatar-particles"></div>
+              </div>
               <div class="profile-details">
                 <h2 id="userName">에코탐험가</h2>
-                <div class="level-badge">Lv.<span id="userLevel">5</span></div>
+                <div class="level-badge animated-level">
+                  <span class="level-icon">⭐</span>
+                  Lv.<span id="userLevel">5</span>
+                </div>
               </div>
             </div>
             <div class="xp-bar-container">
               <div class="xp-bar">
-                <div class="xp-progress" id="xpProgress" style="width: 75%"></div>
+                <div class="xp-progress" id="xpProgress" style="width: 75%">
+                  <div class="xp-shimmer"></div>
+                </div>
               </div>
               <span class="xp-text"><span id="userXp">450</span> / <span id="userXpNext">600</span> XP</span>
             </div>
             <div class="token-display">
-              <span class="token-icon">🪙</span>
+              <div class="token-coin">
+                <span class="coin-icon">🪙</span>
+                <span class="coin-shine"></span>
+              </div>
               <span id="userTokens">125</span> 에코토큰
+            </div>
+          </div>
+
+          <!-- 임팩트 카드 (NEW) -->
+          <div class="impact-summary-card" onclick="showScreen('impact')">
+            <div class="impact-header">
+              <span class="impact-icon">🌍</span>
+              <h3>나의 생태 기여도</h3>
+            </div>
+            <div class="impact-stats-mini">
+              <div class="impact-stat">
+                <span class="stat-num" id="impactDiscoveries">23</span>
+                <span class="stat-label">발견 데이터</span>
+              </div>
+              <div class="impact-stat">
+                <span class="stat-num" id="impactResearch">3</span>
+                <span class="stat-label">연구 기여</span>
+              </div>
+              <div class="impact-stat">
+                <span class="stat-num" id="impactCarbon">12kg</span>
+                <span class="stat-label">탄소 저감</span>
+              </div>
+            </div>
+            <div class="impact-cta">
+              <span>자세히 보기</span>
+              <span>→</span>
             </div>
           </div>
 
           <!-- 오늘의 퀘스트 -->
           <section class="section">
             <div class="section-header">
-              <h3>오늘의 퀘스트</h3>
+              <h3>🎯 오늘의 퀘스트</h3>
               <a href="#" onclick="showScreen('quests'); return false;">전체보기</a>
             </div>
-            <div class="quest-list" id="todayQuests">
-              <!-- 동적으로 로드 -->
-            </div>
+            <div class="quest-list" id="todayQuests"></div>
           </section>
 
           <!-- 최근 발견 -->
           <section class="section">
             <div class="section-header">
-              <h3>최근 발견</h3>
+              <h3>🔍 최근 발견</h3>
               <a href="#" onclick="showScreen('collection'); return false;">도감보기</a>
             </div>
-            <div class="discovery-preview" id="recentDiscoveries">
-              <!-- 동적으로 로드 -->
-            </div>
+            <div class="discovery-preview" id="recentDiscoveries"></div>
           </section>
 
           <!-- 주변 공원 -->
           <section class="section">
             <div class="section-header">
-              <h3>주변 탐험지</h3>
+              <h3>🏞️ 주변 탐험지</h3>
               <a href="#" onclick="showScreen('explore'); return false;">지도보기</a>
             </div>
-            <div class="park-list" id="nearbyParks">
-              <!-- 동적으로 로드 -->
-            </div>
+            <div class="park-list" id="nearbyParks"></div>
           </section>
         </div>
       </section>
 
-      <!-- 2. 탐험 화면 (Explore) -->
+      <!-- 2. 탐험 화면 (Leaflet 지도) -->
       <section id="screen-explore" class="screen">
-        <header class="screen-header">
-          <h1>탐험</h1>
-          <button class="btn-icon" onclick="toggleMapLayer()">
-            <span>🗺️</span>
-          </button>
+        <header class="screen-header explore-header">
+          <h1>🗺️ 탐험</h1>
+          <div class="header-actions">
+            <button class="btn-icon" onclick="toggleHeatmap()" id="heatmapToggle">
+              <span>🔥</span>
+            </button>
+            <button class="btn-icon" onclick="centerOnUser()">
+              <span>📍</span>
+            </button>
+          </div>
         </header>
 
         <div class="screen-body map-screen">
-          <!-- 지도 영역 -->
-          <div class="map-container" id="mapContainer">
-            <div class="map-placeholder">
-              <div class="map-grid"></div>
-              <!-- 공원 마커들 -->
-              <div class="park-markers" id="parkMarkers">
-                <!-- 동적으로 로드 -->
-              </div>
-              <!-- 사용자 위치 -->
-              <div class="user-marker">
-                <div class="user-dot"></div>
-                <div class="user-pulse"></div>
-              </div>
-              <!-- 히트맵 오버레이 -->
-              <div class="heatmap-overlay" id="heatmapOverlay"></div>
+          <!-- Leaflet 지도 -->
+          <div id="leafletMap" class="leaflet-map"></div>
+
+          <!-- 지도 레전드 -->
+          <div class="map-legend">
+            <div class="legend-item">
+              <span class="legend-color biodiversity-high"></span>
+              <span>높은 다양성</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color biodiversity-medium"></span>
+              <span>보통</span>
             </div>
           </div>
 
           <!-- AR 카메라 버튼 -->
-          <button class="ar-camera-btn" onclick="startDiscovery()">
+          <button class="ar-camera-btn pulse-btn" onclick="startDiscovery()">
+            <div class="btn-glow"></div>
             <span class="camera-icon">📷</span>
-            <span>생물 발견하기</span>
+            <span>AI로 생물 발견하기</span>
           </button>
 
           <!-- 선택된 공원 정보 -->
           <div class="park-info-card" id="parkInfoCard" style="display: none;">
+            <button class="card-close" onclick="closeParkInfo()">✕</button>
             <div class="park-info-header">
               <h3 id="selectedParkName">공원 이름</h3>
               <span class="biodiversity-badge" id="parkBiodiversity">다양성 높음</span>
             </div>
             <p id="parkArea">지역구</p>
-            <div class="park-species-preview" id="parkSpeciesPreview">
-              <!-- 출현 생물 미리보기 -->
+            <div class="park-species-preview" id="parkSpeciesPreview"></div>
+            <div class="park-stats">
+              <div class="park-stat">
+                <span class="stat-icon">🔍</span>
+                <span id="parkDiscoveryCount">156</span>
+                <span>발견</span>
+              </div>
+              <div class="park-stat">
+                <span class="stat-icon">👥</span>
+                <span id="parkVisitorCount">42</span>
+                <span>탐험가</span>
+              </div>
             </div>
             <button class="btn-primary" onclick="startDiscovery()">여기서 탐험하기</button>
           </div>
         </div>
       </section>
 
-      <!-- 3. 발견 화면 (Discovery) -->
+      <!-- 3. 발견 화면 (AI 카메라) -->
       <section id="screen-discovery" class="screen">
         <header class="screen-header transparent">
-          <button class="btn-icon btn-back" onclick="showScreen('explore')">
+          <button class="btn-icon btn-back" onclick="exitDiscovery()">
             <span>←</span>
           </button>
-          <h1>생물 발견</h1>
+          <h1>AI 생물 발견</h1>
           <div></div>
         </header>
 
         <div class="screen-body discovery-screen">
-          <!-- 카메라 뷰 시뮬레이션 -->
+          <!-- 실제 카메라 뷰 (또는 시뮬레이션) -->
           <div class="camera-view" id="cameraView">
+            <video id="cameraFeed" autoplay playsinline></video>
+            <canvas id="cameraCanvas"></canvas>
+
             <div class="camera-overlay">
-              <div class="scan-frame">
+              <div class="scan-frame animated-frame">
                 <div class="corner tl"></div>
                 <div class="corner tr"></div>
                 <div class="corner bl"></div>
                 <div class="corner br"></div>
+                <div class="scan-line" id="scanLine"></div>
               </div>
-              <div class="scan-line" id="scanLine"></div>
             </div>
+
+            <!-- AI 분석 상태 -->
+            <div class="ai-status" id="aiStatus">
+              <div class="ai-indicator">
+                <div class="ai-pulse"></div>
+                <span>AI 분석 중...</span>
+              </div>
+              <div class="ai-confidence" id="aiConfidence">
+                <span>신뢰도: </span>
+                <span id="confidenceValue">분석 중</span>
+              </div>
+            </div>
+
             <p class="camera-hint" id="cameraHint">생물을 프레임 안에 맞춰주세요</p>
+
+            <!-- 촬영 버튼 -->
+            <button class="capture-btn" id="captureBtn" onclick="captureAndAnalyze()">
+              <div class="capture-ring"></div>
+              <div class="capture-center"></div>
+            </button>
           </div>
 
           <!-- AI 식별 결과 -->
           <div class="discovery-result" id="discoveryResult" style="display: none;">
+            <!-- 파티클 효과 캔버스 -->
+            <canvas id="celebrationCanvas" class="celebration-canvas"></canvas>
+
             <div class="result-animation">
-              <div class="sparkle"></div>
+              <div class="result-glow"></div>
               <div class="species-image" id="resultImage">🦋</div>
+              <div class="sparkles">
+                <span class="sparkle">✨</span>
+                <span class="sparkle">⭐</span>
+                <span class="sparkle">💫</span>
+                <span class="sparkle">✨</span>
+              </div>
             </div>
+
+            <div class="result-badge-container">
+              <span class="new-discovery-badge" id="newDiscoveryBadge">🎉 신규 발견!</span>
+            </div>
+
             <div class="result-info">
               <span class="rarity-badge" id="resultRarity">희귀</span>
               <h2 id="resultName">호랑나비</h2>
               <p class="scientific-name" id="resultScientific">Papilio xuthus</p>
+              <p class="ai-note">AI 신뢰도: <span id="resultConfidence">94%</span></p>
             </div>
-            <div class="reward-display">
-              <div class="reward-item">
+
+            <div class="reward-display animated-rewards">
+              <div class="reward-item xp-reward">
                 <span class="reward-icon">⭐</span>
                 <span class="reward-value" id="rewardXp">+50 XP</span>
               </div>
-              <div class="reward-item">
+              <div class="reward-item token-reward">
                 <span class="reward-icon">🪙</span>
                 <span class="reward-value" id="rewardToken">+5 토큰</span>
               </div>
             </div>
+
             <div class="result-actions">
               <button class="btn-secondary" onclick="viewSpeciesDetail()">상세정보</button>
               <button class="btn-primary" onclick="continueDiscovery()">계속 탐험</button>
@@ -195,17 +444,16 @@
         </div>
       </section>
 
-      <!-- 4. 도감 화면 (Collection) -->
+      <!-- 4. 도감 화면 -->
       <section id="screen-collection" class="screen">
         <header class="screen-header">
-          <h1>생물 도감</h1>
+          <h1>📚 생물 도감</h1>
           <div class="collection-stats">
             <span id="collectionCount">12</span>/<span id="collectionTotal">38</span>
           </div>
         </header>
 
         <div class="screen-body">
-          <!-- 카테고리 필터 -->
           <div class="category-filter">
             <button class="filter-btn active" data-category="all">전체</button>
             <button class="filter-btn" data-category="bird">🐦 조류</button>
@@ -215,86 +463,61 @@
             <button class="filter-btn" data-category="mammal">🐿️ 포유류</button>
           </div>
 
-          <!-- 생물 그리드 -->
-          <div class="species-grid" id="speciesGrid">
-            <!-- 동적으로 로드 -->
-          </div>
+          <div class="species-grid" id="speciesGrid"></div>
         </div>
       </section>
 
-      <!-- 5. 퀘스트 화면 (Quests) -->
+      <!-- 5. 퀘스트 화면 -->
       <section id="screen-quests" class="screen">
         <header class="screen-header">
-          <h1>퀘스트</h1>
-          <div class="streak-badge">
-            <span>🔥</span>
+          <h1>🎯 퀘스트</h1>
+          <div class="streak-badge animated-streak">
+            <span class="fire-icon">🔥</span>
             <span id="streakDays">7</span>일 연속
           </div>
         </header>
 
         <div class="screen-body">
-          <!-- 퀘스트 탭 -->
           <div class="quest-tabs">
             <button class="tab-btn active" data-tab="daily">일일</button>
             <button class="tab-btn" data-tab="weekly">주간</button>
             <button class="tab-btn" data-tab="seasonal">시즌</button>
           </div>
 
-          <!-- 일일 퀘스트 -->
           <div class="quest-content active" id="tab-daily">
-            <div class="quest-list-full" id="dailyQuestList">
-              <!-- 동적으로 로드 -->
-            </div>
+            <div class="quest-list-full" id="dailyQuestList"></div>
           </div>
 
-          <!-- 주간 퀘스트 -->
           <div class="quest-content" id="tab-weekly">
-            <div class="quest-list-full" id="weeklyQuestList">
-              <!-- 동적으로 로드 -->
-            </div>
+            <div class="quest-list-full" id="weeklyQuestList"></div>
           </div>
 
-          <!-- 시즌 퀘스트 -->
           <div class="quest-content" id="tab-seasonal">
-            <div class="seasonal-banner" id="seasonalBanner">
-              <!-- 동적으로 로드 -->
-            </div>
+            <div class="seasonal-banner" id="seasonalBanner"></div>
           </div>
         </div>
       </section>
 
-      <!-- 6. 리더보드 화면 (Leaderboard) -->
+      <!-- 6. 리더보드 화면 -->
       <section id="screen-leaderboard" class="screen">
         <header class="screen-header">
-          <h1>랭킹</h1>
+          <h1>🏆 랭킹</h1>
         </header>
 
         <div class="screen-body">
-          <!-- 랭킹 탭 -->
           <div class="ranking-tabs">
             <button class="tab-btn active" data-tab="global">전체</button>
             <button class="tab-btn" data-tab="regional">지역</button>
             <button class="tab-btn" data-tab="guild">길드</button>
           </div>
 
-          <!-- 상위 3인 -->
-          <div class="top-three" id="topThree">
-            <!-- 동적으로 로드 -->
-          </div>
-
-          <!-- 랭킹 리스트 -->
-          <div class="ranking-list" id="rankingList">
-            <!-- 동적으로 로드 -->
-          </div>
-
-          <!-- 내 순위 -->
-          <div class="my-rank-card" id="myRankCard">
-            <!-- 동적으로 로드 -->
-          </div>
+          <div class="top-three" id="topThree"></div>
+          <div class="ranking-list" id="rankingList"></div>
+          <div class="my-rank-card" id="myRankCard"></div>
         </div>
       </section>
 
-      <!-- 7. 프로필/보상 화면 (Profile) -->
+      <!-- 7. 프로필 화면 -->
       <section id="screen-profile" class="screen">
         <header class="screen-header">
           <button class="btn-icon btn-back" onclick="showScreen('home')">
@@ -307,16 +530,17 @@
         </header>
 
         <div class="screen-body">
-          <!-- 프로필 헤더 -->
           <div class="profile-header-large">
-            <div class="avatar-xlarge">🌿</div>
+            <div class="avatar-xlarge animated-avatar">
+              <span>🌿</span>
+              <div class="avatar-ring"></div>
+            </div>
             <h2 id="profileName">에코탐험가</h2>
             <div class="profile-level">
               <span class="level-badge large">Lv.<span id="profileLevel">5</span></span>
             </div>
           </div>
 
-          <!-- 토큰 및 자산 -->
           <div class="assets-card">
             <div class="asset-item">
               <span class="asset-icon">🪙</span>
@@ -343,7 +567,6 @@
             </div>
           </div>
 
-          <!-- 통계 -->
           <section class="section">
             <h3 class="section-title">활동 통계</h3>
             <div class="stats-grid">
@@ -370,25 +593,113 @@
             </div>
           </section>
 
-          <!-- 배지 갤러리 -->
           <section class="section">
             <div class="section-header">
               <h3>획득 배지</h3>
               <span class="badge-count" id="badgeCount">3개</span>
             </div>
-            <div class="badge-gallery" id="badgeGallery">
-              <!-- 동적으로 로드 -->
-            </div>
+            <div class="badge-gallery" id="badgeGallery"></div>
           </section>
 
-          <!-- NFT 갤러리 -->
           <section class="section">
             <div class="section-header">
               <h3>NFT 컬렉션</h3>
               <span class="nft-count" id="nftCount">1개</span>
             </div>
-            <div class="nft-gallery" id="nftGallery">
-              <!-- 동적으로 로드 -->
+            <div class="nft-gallery" id="nftGallery"></div>
+          </section>
+        </div>
+      </section>
+
+      <!-- 8. 임팩트 대시보드 (NEW) -->
+      <section id="screen-impact" class="screen">
+        <header class="screen-header">
+          <button class="btn-icon btn-back" onclick="showScreen('home')">
+            <span>←</span>
+          </button>
+          <h1>🌍 나의 생태 기여</h1>
+          <div></div>
+        </header>
+
+        <div class="screen-body">
+          <!-- 임팩트 히어로 카드 -->
+          <div class="impact-hero-card">
+            <div class="impact-hero-bg"></div>
+            <div class="impact-hero-content">
+              <div class="impact-avatar">🌿</div>
+              <h2>에코탐험가님의 기여</h2>
+              <p class="impact-subtitle">당신의 발견이 세상을 바꿉니다</p>
+            </div>
+          </div>
+
+          <!-- 핵심 임팩트 지표 -->
+          <div class="impact-metrics">
+            <div class="metric-card primary">
+              <div class="metric-icon">📊</div>
+              <div class="metric-value" id="totalDataPoints">23</div>
+              <div class="metric-label">수집한 생태 데이터</div>
+              <div class="metric-sublabel">국가 생물다양성 DB에 기여</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon">📚</div>
+              <div class="metric-value" id="researchCitations">3</div>
+              <div class="metric-label">연구 인용</div>
+              <div class="metric-sublabel">학술 논문에 활용</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon">🌱</div>
+              <div class="metric-value" id="carbonOffset">12kg</div>
+              <div class="metric-label">탄소 저감 기여</div>
+              <div class="metric-sublabel">도보 탐험으로 절약</div>
+            </div>
+          </div>
+
+          <!-- 기여 타임라인 -->
+          <section class="section">
+            <h3 class="section-title">📈 나의 기여 여정</h3>
+            <div class="contribution-timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <span class="timeline-date">2026.01.25</span>
+                  <p>희귀종 '소쩍새' 발견 - 서울시 생태 모니터링 보고서에 포함</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <span class="timeline-date">2026.01.20</span>
+                  <p>북한산 탐험 데이터 - 국립공원 생물조사에 활용</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <span class="timeline-date">2026.01.15</span>
+                  <p>에코퀘스트 탐험가로 첫 여정 시작</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 배지 획득 현황 -->
+          <section class="section">
+            <h3 class="section-title">🏅 환경 영향력 배지</h3>
+            <div class="impact-badges">
+              <div class="impact-badge earned">
+                <span class="badge-icon">🌱</span>
+                <span class="badge-name">시민 과학자</span>
+              </div>
+              <div class="impact-badge earned">
+                <span class="badge-icon">🔬</span>
+                <span class="badge-name">데이터 기여자</span>
+              </div>
+              <div class="impact-badge">
+                <span class="badge-icon">🌍</span>
+                <span class="badge-name">환경 수호자</span>
+              </div>
             </div>
           </section>
         </div>
@@ -406,8 +717,11 @@
         <span class="nav-icon">🗺️</span>
         <span class="nav-label">탐험</span>
       </button>
-      <button class="nav-item nav-center" data-screen="discovery" onclick="startDiscovery()">
-        <span class="nav-icon-large">📷</span>
+      <button class="nav-item nav-center" onclick="startDiscovery()">
+        <span class="nav-icon-large">
+          <span class="camera-pulse"></span>
+          📷
+        </span>
       </button>
       <button class="nav-item" data-screen="collection">
         <span class="nav-icon">📚</span>
@@ -463,11 +777,11 @@
     <div class="modal level-up-modal" id="levelUpModal">
       <div class="modal-overlay"></div>
       <div class="level-up-content">
+        <canvas id="levelUpConfetti" class="confetti-canvas"></canvas>
         <div class="level-up-animation">
-          <div class="confetti"></div>
           <div class="level-badge xlarge">Lv.<span id="newLevel">6</span></div>
         </div>
-        <h2>레벨 업!</h2>
+        <h2>🎉 레벨 업!</h2>
         <p>축하합니다! 새로운 레벨에 도달했습니다.</p>
         <button class="btn-primary" onclick="closeLevelUpModal()">확인</button>
       </div>
@@ -475,8 +789,21 @@
 
   </div>
 
+  <!-- 푸터 - 공모전 정보 -->
+  <footer class="app-footer" id="appFooter">
+    <div class="footer-content">
+      <span class="footer-contest">조경 2050 공모전 출품작</span>
+      <span class="footer-divider">|</span>
+      <span class="footer-project">EcoQuest 프로토타입</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/data.js"></script>
+  <script src="js/particles.js"></script>
   <script src="js/components.js"></script>
+  <script src="js/guidetour.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
