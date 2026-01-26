@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#10B981">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>EcoQuest - 생태 탐험 앱</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 상태바 (모바일 앱 느낌) -->
+    <div class="status-bar">
+      <span class="time" id="statusTime">9:41</span>
+      <div class="status-icons">
+        <span>📶</span>
+        <span>🔋</span>
+      </div>
+    </div>
+
+    <!-- 메인 컨텐츠 영역 -->
+    <main class="main-content">
+
+      <!-- 1. 홈 화면 (Dashboard) -->
+      <section id="screen-home" class="screen active">
+        <header class="screen-header">
+          <h1>EcoQuest</h1>
+          <button class="btn-icon" onclick="showScreen('profile')">
+            <span class="user-avatar">🌿</span>
+          </button>
+        </header>
+
+        <div class="screen-body">
+          <!-- 사용자 프로필 카드 -->
+          <div class="profile-card">
+            <div class="profile-info">
+              <div class="avatar-large">🌿</div>
+              <div class="profile-details">
+                <h2 id="userName">에코탐험가</h2>
+                <div class="level-badge">Lv.<span id="userLevel">5</span></div>
+              </div>
+            </div>
+            <div class="xp-bar-container">
+              <div class="xp-bar">
+                <div class="xp-progress" id="xpProgress" style="width: 75%"></div>
+              </div>
+              <span class="xp-text"><span id="userXp">450</span> / <span id="userXpNext">600</span> XP</span>
+            </div>
+            <div class="token-display">
+              <span class="token-icon">🪙</span>
+              <span id="userTokens">125</span> 에코토큰
+            </div>
+          </div>
+
+          <!-- 오늘의 퀘스트 -->
+          <section class="section">
+            <div class="section-header">
+              <h3>오늘의 퀘스트</h3>
+              <a href="#" onclick="showScreen('quests'); return false;">전체보기</a>
+            </div>
+            <div class="quest-list" id="todayQuests">
+              <!-- 동적으로 로드 -->
+            </div>
+          </section>
+
+          <!-- 최근 발견 -->
+          <section class="section">
+            <div class="section-header">
+              <h3>최근 발견</h3>
+              <a href="#" onclick="showScreen('collection'); return false;">도감보기</a>
+            </div>
+            <div class="discovery-preview" id="recentDiscoveries">
+              <!-- 동적으로 로드 -->
+            </div>
+          </section>
+
+          <!-- 주변 공원 -->
+          <section class="section">
+            <div class="section-header">
+              <h3>주변 탐험지</h3>
+              <a href="#" onclick="showScreen('explore'); return false;">지도보기</a>
+            </div>
+            <div class="park-list" id="nearbyParks">
+              <!-- 동적으로 로드 -->
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- 2. 탐험 화면 (Explore) -->
+      <section id="screen-explore" class="screen">
+        <header class="screen-header">
+          <h1>탐험</h1>
+          <button class="btn-icon" onclick="toggleMapLayer()">
+            <span>🗺️</span>
+          </button>
+        </header>
+
+        <div class="screen-body map-screen">
+          <!-- 지도 영역 -->
+          <div class="map-container" id="mapContainer">
+            <div class="map-placeholder">
+              <div class="map-grid"></div>
+              <!-- 공원 마커들 -->
+              <div class="park-markers" id="parkMarkers">
+                <!-- 동적으로 로드 -->
+              </div>
+              <!-- 사용자 위치 -->
+              <div class="user-marker">
+                <div class="user-dot"></div>
+                <div class="user-pulse"></div>
+              </div>
+              <!-- 히트맵 오버레이 -->
+              <div class="heatmap-overlay" id="heatmapOverlay"></div>
+            </div>
+          </div>
+
+          <!-- AR 카메라 버튼 -->
+          <button class="ar-camera-btn" onclick="startDiscovery()">
+            <span class="camera-icon">📷</span>
+            <span>생물 발견하기</span>
+          </button>
+
+          <!-- 선택된 공원 정보 -->
+          <div class="park-info-card" id="parkInfoCard" style="display: none;">
+            <div class="park-info-header">
+              <h3 id="selectedParkName">공원 이름</h3>
+              <span class="biodiversity-badge" id="parkBiodiversity">다양성 높음</span>
+            </div>
+            <p id="parkArea">지역구</p>
+            <div class="park-species-preview" id="parkSpeciesPreview">
+              <!-- 출현 생물 미리보기 -->
+            </div>
+            <button class="btn-primary" onclick="startDiscovery()">여기서 탐험하기</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 발견 화면 (Discovery) -->
+      <section id="screen-discovery" class="screen">
+        <header class="screen-header transparent">
+          <button class="btn-icon btn-back" onclick="showScreen('explore')">
+            <span>←</span>
+          </button>
+          <h1>생물 발견</h1>
+          <div></div>
+        </header>
+
+        <div class="screen-body discovery-screen">
+          <!-- 카메라 뷰 시뮬레이션 -->
+          <div class="camera-view" id="cameraView">
+            <div class="camera-overlay">
+              <div class="scan-frame">
+                <div class="corner tl"></div>
+                <div class="corner tr"></div>
+                <div class="corner bl"></div>
+                <div class="corner br"></div>
+              </div>
+              <div class="scan-line" id="scanLine"></div>
+            </div>
+            <p class="camera-hint" id="cameraHint">생물을 프레임 안에 맞춰주세요</p>
+          </div>
+
+          <!-- AI 식별 결과 -->
+          <div class="discovery-result" id="discoveryResult" style="display: none;">
+            <div class="result-animation">
+              <div class="sparkle"></div>
+              <div class="species-image" id="resultImage">🦋</div>
+            </div>
+            <div class="result-info">
+              <span class="rarity-badge" id="resultRarity">희귀</span>
+              <h2 id="resultName">호랑나비</h2>
+              <p class="scientific-name" id="resultScientific">Papilio xuthus</p>
+            </div>
+            <div class="reward-display">
+              <div class="reward-item">
+                <span class="reward-icon">⭐</span>
+                <span class="reward-value" id="rewardXp">+50 XP</span>
+              </div>
+              <div class="reward-item">
+                <span class="reward-icon">🪙</span>
+                <span class="reward-value" id="rewardToken">+5 토큰</span>
+              </div>
+            </div>
+            <div class="result-actions">
+              <button class="btn-secondary" onclick="viewSpeciesDetail()">상세정보</button>
+              <button class="btn-primary" onclick="continueDiscovery()">계속 탐험</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 도감 화면 (Collection) -->
+      <section id="screen-collection" class="screen">
+        <header class="screen-header">
+          <h1>생물 도감</h1>
+          <div class="collection-stats">
+            <span id="collectionCount">12</span>/<span id="collectionTotal">38</span>
+          </div>
+        </header>
+
+        <div class="screen-body">
+          <!-- 카테고리 필터 -->
+          <div class="category-filter">
+            <button class="filter-btn active" data-category="all">전체</button>
+            <button class="filter-btn" data-category="bird">🐦 조류</button>
+            <button class="filter-btn" data-category="insect">🦋 곤충</button>
+            <button class="filter-btn" data-category="plant">🌿 식물</button>
+            <button class="filter-btn" data-category="amphibian">🐸 양서류</button>
+            <button class="filter-btn" data-category="mammal">🐿️ 포유류</button>
+          </div>
+
+          <!-- 생물 그리드 -->
+          <div class="species-grid" id="speciesGrid">
+            <!-- 동적으로 로드 -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. 퀘스트 화면 (Quests) -->
+      <section id="screen-quests" class="screen">
+        <header class="screen-header">
+          <h1>퀘스트</h1>
+          <div class="streak-badge">
+            <span>🔥</span>
+            <span id="streakDays">7</span>일 연속
+          </div>
+        </header>
+
+        <div class="screen-body">
+          <!-- 퀘스트 탭 -->
+          <div class="quest-tabs">
+            <button class="tab-btn active" data-tab="daily">일일</button>
+            <button class="tab-btn" data-tab="weekly">주간</button>
+            <button class="tab-btn" data-tab="seasonal">시즌</button>
+          </div>
+
+          <!-- 일일 퀘스트 -->
+          <div class="quest-content active" id="tab-daily">
+            <div class="quest-list-full" id="dailyQuestList">
+              <!-- 동적으로 로드 -->
+            </div>
+          </div>
+
+          <!-- 주간 퀘스트 -->
+          <div class="quest-content" id="tab-weekly">
+            <div class="quest-list-full" id="weeklyQuestList">
+              <!-- 동적으로 로드 -->
+            </div>
+          </div>
+
+          <!-- 시즌 퀘스트 -->
+          <div class="quest-content" id="tab-seasonal">
+            <div class="seasonal-banner" id="seasonalBanner">
+              <!-- 동적으로 로드 -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. 리더보드 화면 (Leaderboard) -->
+      <section id="screen-leaderboard" class="screen">
+        <header class="screen-header">
+          <h1>랭킹</h1>
+        </header>
+
+        <div class="screen-body">
+          <!-- 랭킹 탭 -->
+          <div class="ranking-tabs">
+            <button class="tab-btn active" data-tab="global">전체</button>
+            <button class="tab-btn" data-tab="regional">지역</button>
+            <button class="tab-btn" data-tab="guild">길드</button>
+          </div>
+
+          <!-- 상위 3인 -->
+          <div class="top-three" id="topThree">
+            <!-- 동적으로 로드 -->
+          </div>
+
+          <!-- 랭킹 리스트 -->
+          <div class="ranking-list" id="rankingList">
+            <!-- 동적으로 로드 -->
+          </div>
+
+          <!-- 내 순위 -->
+          <div class="my-rank-card" id="myRankCard">
+            <!-- 동적으로 로드 -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. 프로필/보상 화면 (Profile) -->
+      <section id="screen-profile" class="screen">
+        <header class="screen-header">
+          <button class="btn-icon btn-back" onclick="showScreen('home')">
+            <span>←</span>
+          </button>
+          <h1>내 프로필</h1>
+          <button class="btn-icon">
+            <span>⚙️</span>
+          </button>
+        </header>
+
+        <div class="screen-body">
+          <!-- 프로필 헤더 -->
+          <div class="profile-header-large">
+            <div class="avatar-xlarge">🌿</div>
+            <h2 id="profileName">에코탐험가</h2>
+            <div class="profile-level">
+              <span class="level-badge large">Lv.<span id="profileLevel">5</span></span>
+            </div>
+          </div>
+
+          <!-- 토큰 및 자산 -->
+          <div class="assets-card">
+            <div class="asset-item">
+              <span class="asset-icon">🪙</span>
+              <div class="asset-info">
+                <span class="asset-label">에코토큰</span>
+                <span class="asset-value" id="profileTokens">125</span>
+              </div>
+            </div>
+            <div class="asset-divider"></div>
+            <div class="asset-item">
+              <span class="asset-icon">🏅</span>
+              <div class="asset-info">
+                <span class="asset-label">배지</span>
+                <span class="asset-value" id="profileBadges">3</span>
+              </div>
+            </div>
+            <div class="asset-divider"></div>
+            <div class="asset-item">
+              <span class="asset-icon">⭐</span>
+              <div class="asset-info">
+                <span class="asset-label">NFT</span>
+                <span class="asset-value" id="profileNFTs">1</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 통계 -->
+          <section class="section">
+            <h3 class="section-title">활동 통계</h3>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <span class="stat-icon">🔍</span>
+                <span class="stat-value" id="statDiscoveries">23</span>
+                <span class="stat-label">총 발견</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-icon">👣</span>
+                <span class="stat-value" id="statSteps">45.2K</span>
+                <span class="stat-label">걸음 수</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-icon">🏞️</span>
+                <span class="stat-value" id="statParks">6</span>
+                <span class="stat-label">방문 공원</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-icon">✅</span>
+                <span class="stat-value" id="statQuests">18</span>
+                <span class="stat-label">완료 퀘스트</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 배지 갤러리 -->
+          <section class="section">
+            <div class="section-header">
+              <h3>획득 배지</h3>
+              <span class="badge-count" id="badgeCount">3개</span>
+            </div>
+            <div class="badge-gallery" id="badgeGallery">
+              <!-- 동적으로 로드 -->
+            </div>
+          </section>
+
+          <!-- NFT 갤러리 -->
+          <section class="section">
+            <div class="section-header">
+              <h3>NFT 컬렉션</h3>
+              <span class="nft-count" id="nftCount">1개</span>
+            </div>
+            <div class="nft-gallery" id="nftGallery">
+              <!-- 동적으로 로드 -->
+            </div>
+          </section>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 하단 네비게이션 -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-screen="home">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">홈</span>
+      </button>
+      <button class="nav-item" data-screen="explore">
+        <span class="nav-icon">🗺️</span>
+        <span class="nav-label">탐험</span>
+      </button>
+      <button class="nav-item nav-center" data-screen="discovery" onclick="startDiscovery()">
+        <span class="nav-icon-large">📷</span>
+      </button>
+      <button class="nav-item" data-screen="collection">
+        <span class="nav-icon">📚</span>
+        <span class="nav-label">도감</span>
+      </button>
+      <button class="nav-item" data-screen="quests">
+        <span class="nav-icon">🎯</span>
+        <span class="nav-label">퀘스트</span>
+      </button>
+    </nav>
+
+    <!-- 모달: 생물 상세 정보 -->
+    <div class="modal" id="speciesModal">
+      <div class="modal-overlay" onclick="closeModal()"></div>
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="species-detail">
+          <div class="species-image-large" id="modalImage">🦋</div>
+          <span class="rarity-badge" id="modalRarity">희귀</span>
+          <h2 id="modalName">호랑나비</h2>
+          <p class="scientific-name" id="modalScientific">Papilio xuthus</p>
+          <div class="species-info-grid">
+            <div class="info-item">
+              <span class="info-label">서식지</span>
+              <span class="info-value" id="modalHabitat">공원, 정원</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">활동 시기</span>
+              <span class="info-value" id="modalSeason">봄-가을</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">획득 XP</span>
+              <span class="info-value" id="modalXp">10 XP</span>
+            </div>
+          </div>
+          <p class="species-description" id="modalDescription">
+            노란 바탕에 검은 줄무늬가 특징인 나비입니다.
+          </p>
+          <div class="discovery-info" id="modalDiscoveryInfo">
+            <span>🗓️ 2026년 1월 20일 발견</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 토스트 알림 -->
+    <div class="toast" id="toast">
+      <span class="toast-icon">✓</span>
+      <span class="toast-message" id="toastMessage">알림 메시지</span>
+    </div>
+
+    <!-- 레벨업 모달 -->
+    <div class="modal level-up-modal" id="levelUpModal">
+      <div class="modal-overlay"></div>
+      <div class="level-up-content">
+        <div class="level-up-animation">
+          <div class="confetti"></div>
+          <div class="level-badge xlarge">Lv.<span id="newLevel">6</span></div>
+        </div>
+        <h2>레벨 업!</h2>
+        <p>축하합니다! 새로운 레벨에 도달했습니다.</p>
+        <button class="btn-primary" onclick="closeLevelUpModal()">확인</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

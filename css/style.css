@@ -1,0 +1,1827 @@
+/* EcoQuest 스타일시트 */
+
+/* CSS 변수 */
+:root {
+  /* 컬러 팔레트 */
+  --primary: #10B981;
+  --primary-dark: #059669;
+  --primary-light: #34D399;
+  --secondary: #3B82F6;
+  --accent: #F59E0B;
+
+  /* 배경 */
+  --bg-primary: #F0FDF4;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-dark: #1F2937;
+
+  /* 텍스트 */
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --text-light: #9CA3AF;
+  --text-white: #FFFFFF;
+
+  /* 희귀도 컬러 */
+  --rarity-common: #6B7280;
+  --rarity-uncommon: #10B981;
+  --rarity-rare: #3B82F6;
+  --rarity-legendary: #F59E0B;
+
+  /* 그림자 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  /* 간격 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* 둥글기 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* 네비게이션 높이 */
+  --nav-height: 80px;
+  --status-bar-height: 44px;
+  --header-height: 56px;
+}
+
+/* 리셋 */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #E5E7EB;
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 앱 컨테이너 (모바일 시뮬레이션) */
+.app-container {
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  max-height: 932px;
+  background-color: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 431px) {
+  .app-container {
+    border-radius: 40px;
+    height: 90vh;
+    margin: 20px;
+  }
+}
+
+/* 상태바 */
+.status-bar {
+  height: var(--status-bar-height);
+  background: var(--primary);
+  color: var(--text-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--spacing-lg);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.status-icons {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* 메인 컨텐츠 */
+.main-content {
+  height: calc(100% - var(--status-bar-height) - var(--nav-height));
+  overflow: hidden;
+  position: relative;
+}
+
+/* 화면 */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  display: none;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.screen.active {
+  display: flex;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 화면 헤더 */
+.screen-header {
+  height: var(--header-height);
+  background: var(--bg-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--spacing-md);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+.screen-header.transparent {
+  background: transparent;
+  border-bottom: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.screen-header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* 화면 바디 */
+.screen-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+  padding-bottom: var(--spacing-xl);
+}
+
+/* 버튼 스타일 */
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background 0.2s;
+}
+
+.btn-icon:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--text-white);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-full);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-full);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-primary);
+}
+
+/* 프로필 카드 */
+.profile-card {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  color: var(--text-white);
+  margin-bottom: var(--spacing-lg);
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.avatar-large {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.profile-details h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.level-badge.large {
+  font-size: 18px;
+  padding: 4px 16px;
+}
+
+.level-badge.xlarge {
+  font-size: 48px;
+  padding: 8px 24px;
+  background: var(--primary);
+}
+
+.xp-bar-container {
+  margin-bottom: var(--spacing-md);
+}
+
+.xp-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--spacing-xs);
+}
+
+.xp-progress {
+  height: 100%;
+  background: var(--accent);
+  border-radius: var(--radius-full);
+  transition: width 0.5s ease;
+}
+
+.xp-text {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.token-display {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.token-icon {
+  font-size: 20px;
+}
+
+/* 섹션 */
+.section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.section-header h3, .section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.section-header a {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 퀘스트 리스트 */
+.quest-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.quest-item {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.quest-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.quest-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.quest-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.quest-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.quest-progress-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.quest-progress-bar {
+  height: 4px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-full);
+  margin-top: var(--spacing-xs);
+  overflow: hidden;
+}
+
+.quest-progress-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.quest-reward {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.quest-reward span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* 발견 미리보기 */
+.discovery-preview {
+  display: flex;
+  gap: var(--spacing-sm);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-sm);
+  -webkit-overflow-scrolling: touch;
+}
+
+.discovery-preview::-webkit-scrollbar {
+  display: none;
+}
+
+.discovery-item {
+  flex-shrink: 0;
+  width: 80px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.discovery-image {
+  width: 64px;
+  height: 64px;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto var(--spacing-xs);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s;
+}
+
+.discovery-item:hover .discovery-image {
+  transform: scale(1.05);
+}
+
+.discovery-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 공원 리스트 */
+.park-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.park-item {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.park-item:hover {
+  transform: translateX(4px);
+}
+
+.park-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.park-info {
+  flex: 1;
+}
+
+.park-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.park-area {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.biodiversity-badge {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+}
+
+.biodiversity-badge.very_high {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--primary);
+}
+
+.biodiversity-badge.high {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--secondary);
+}
+
+.biodiversity-badge.medium {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--accent);
+}
+
+/* 탐험 화면 - 지도 */
+.map-screen {
+  padding: 0;
+  position: relative;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #E0F2FE 0%, #F0FDF4 100%);
+  position: relative;
+}
+
+.map-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.park-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.park-marker {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 5;
+}
+
+.park-marker:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+.park-marker.selected {
+  background: var(--accent);
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.user-marker {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.user-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--secondary);
+  border: 3px solid white;
+  border-radius: var(--radius-full);
+  position: relative;
+  z-index: 2;
+}
+
+.user-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: var(--radius-full);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+
+.heatmap-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.ar-camera-btn {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  z-index: 20;
+  transition: all 0.2s;
+}
+
+.ar-camera-btn:hover {
+  background: var(--primary-dark);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.camera-icon {
+  font-size: 24px;
+}
+
+.park-info-card {
+  position: absolute;
+  bottom: 100px;
+  left: var(--spacing-md);
+  right: var(--spacing-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: 15;
+}
+
+.park-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.park-info-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.park-species-preview {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin: var(--spacing-md) 0;
+  flex-wrap: wrap;
+}
+
+.species-mini {
+  width: 36px;
+  height: 36px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* 발견 화면 */
+.discovery-screen {
+  padding: 0;
+  background: #000;
+  position: relative;
+}
+
+.camera-view {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scan-frame {
+  width: 250px;
+  height: 250px;
+  position: relative;
+}
+
+.corner {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--primary);
+}
+
+.corner.tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+.corner.tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+.corner.bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+.corner.br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+.scan-line {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
+  animation: scan 2s infinite;
+}
+
+@keyframes scan {
+  0% { top: 20%; }
+  50% { top: 70%; }
+  100% { top: 20%; }
+}
+
+.camera-hint {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.discovery-result {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.9) 0%, rgba(5, 150, 105, 0.95) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  color: white;
+  text-align: center;
+}
+
+.result-animation {
+  position: relative;
+  margin-bottom: var(--spacing-lg);
+}
+
+.sparkle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  animation: sparkle 1.5s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+}
+
+.species-image {
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  position: relative;
+  z-index: 2;
+}
+
+.result-info {
+  margin-bottom: var(--spacing-lg);
+}
+
+.result-info h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: var(--spacing-sm) 0;
+}
+
+.scientific-name {
+  font-size: 14px;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.rarity-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.rarity-badge.common { background: var(--rarity-common); color: white; }
+.rarity-badge.uncommon { background: var(--rarity-uncommon); color: white; }
+.rarity-badge.rare { background: var(--rarity-rare); color: white; }
+.rarity-badge.legendary { background: var(--rarity-legendary); color: white; }
+
+.reward-display {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.reward-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: rgba(255, 255, 255, 0.2);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-full);
+}
+
+.reward-icon {
+  font-size: 20px;
+}
+
+.reward-value {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.result-actions {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.result-actions .btn-secondary {
+  background: transparent;
+  border-color: white;
+  color: white;
+}
+
+.result-actions .btn-primary {
+  background: white;
+  color: var(--primary);
+}
+
+/* 도감 화면 */
+.category-filter {
+  display: flex;
+  gap: var(--spacing-sm);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  -webkit-overflow-scrolling: touch;
+}
+
+.category-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-btn {
+  flex-shrink: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  background: var(--bg-card);
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  background: var(--bg-primary);
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+.collection-stats {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.species-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+.species-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.species-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.species-card.undiscovered {
+  opacity: 0.5;
+}
+
+.species-card.undiscovered .species-card-image {
+  filter: grayscale(100%);
+}
+
+.species-card-image {
+  width: 60px;
+  height: 60px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto var(--spacing-sm);
+}
+
+.species-card-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.species-card-rarity {
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-xs);
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+}
+
+.species-card-rarity.common { background: var(--rarity-common); }
+.species-card-rarity.uncommon { background: var(--rarity-uncommon); }
+.species-card-rarity.rare { background: var(--rarity-rare); }
+.species-card-rarity.legendary { background: var(--rarity-legendary); }
+
+/* 퀘스트 화면 */
+.streak-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: rgba(245, 158, 11, 0.1);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.quest-tabs, .ranking-tabs {
+  display: flex;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  margin-bottom: var(--spacing-md);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+.quest-content, .ranking-content {
+  display: none;
+}
+
+.quest-content.active, .ranking-content.active {
+  display: block;
+}
+
+.quest-list-full {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.quest-item-full {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.quest-item-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.quest-item-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.quest-item-info {
+  flex: 1;
+}
+
+.quest-item-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.quest-item-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.quest-item-rewards {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.quest-reward-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.quest-reward-item.xp { color: var(--accent); }
+.quest-reward-item.token { color: var(--primary); }
+.quest-reward-item.badge { color: var(--secondary); }
+
+.quest-item-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.quest-progress-bar-full {
+  flex: 1;
+  height: 8px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.quest-progress-fill-full {
+  height: 100%;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.quest-progress-text-full {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* 시즌 배너 */
+.seasonal-banner {
+  background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  border: 2px solid #F9A8D4;
+}
+
+.seasonal-icon {
+  font-size: 64px;
+  margin-bottom: var(--spacing-md);
+}
+
+.seasonal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #BE185D;
+  margin-bottom: var(--spacing-sm);
+}
+
+.seasonal-desc {
+  font-size: 14px;
+  color: #9D174D;
+  margin-bottom: var(--spacing-lg);
+}
+
+.seasonal-progress {
+  margin-bottom: var(--spacing-md);
+}
+
+.seasonal-rewards {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+}
+
+.seasonal-reward {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.seasonal-reward-icon {
+  font-size: 28px;
+}
+
+.seasonal-reward-label {
+  font-size: 12px;
+  color: #9D174D;
+}
+
+.seasonal-end-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: var(--spacing-md);
+}
+
+/* 리더보드 화면 */
+.top-three {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-lg) 0;
+}
+
+.top-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.top-player.second, .top-player.third {
+  transform: translateY(20px);
+}
+
+.top-player .avatar {
+  width: 60px;
+  height: 60px;
+  background: var(--bg-card);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: var(--spacing-sm);
+  box-shadow: var(--shadow-md);
+}
+
+.top-player.first .avatar {
+  width: 80px;
+  height: 80px;
+  font-size: 40px;
+  border: 3px solid var(--accent);
+}
+
+.top-player .rank-badge {
+  font-size: 24px;
+  margin-bottom: var(--spacing-xs);
+}
+
+.top-player .name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.top-player .xp {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.rank-item {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.rank-item.current-user {
+  background: rgba(16, 185, 129, 0.1);
+  border: 2px solid var(--primary);
+}
+
+.rank-number {
+  width: 32px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.rank-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.rank-info {
+  flex: 1;
+}
+
+.rank-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.rank-stats {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.rank-xp {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.my-rank-card {
+  position: sticky;
+  bottom: 0;
+  background: var(--bg-card);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) calc(var(--spacing-md) * -1) 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 프로필 화면 */
+.profile-header-large {
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+}
+
+.avatar-xlarge {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  margin: 0 auto var(--spacing-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.profile-header-large h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+}
+
+.profile-level {
+  display: flex;
+  justify-content: center;
+}
+
+.assets-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.asset-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.asset-icon {
+  font-size: 28px;
+}
+
+.asset-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.asset-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.asset-value {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.asset-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--bg-primary);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-icon {
+  font-size: 24px;
+  margin-bottom: var(--spacing-xs);
+  display: block;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: block;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.badge-gallery, .nft-gallery {
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-sm);
+  -webkit-overflow-scrolling: touch;
+}
+
+.badge-gallery::-webkit-scrollbar, .nft-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.badge-item, .nft-item {
+  flex-shrink: 0;
+  width: 100px;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.badge-icon, .nft-icon {
+  font-size: 40px;
+  margin-bottom: var(--spacing-sm);
+  display: block;
+}
+
+.badge-name, .nft-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.badge-date, .nft-rarity {
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.nft-item {
+  border: 2px solid var(--accent);
+  background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+}
+
+.badge-count, .nft-count {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* 하단 네비게이션 */
+.bottom-nav {
+  height: var(--nav-height);
+  background: var(--bg-secondary);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--spacing-sm);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.nav-item:hover, .nav-item.active {
+  color: var(--primary);
+}
+
+.nav-icon {
+  font-size: 24px;
+}
+
+.nav-label {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.nav-center {
+  transform: translateY(-20px);
+}
+
+.nav-icon-large {
+  width: 56px;
+  height: 56px;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.2s;
+}
+
+.nav-center:hover .nav-icon-large {
+  transform: scale(1.1);
+}
+
+/* 모달 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  max-width: 90%;
+  max-height: 80%;
+  overflow-y: auto;
+  z-index: 101;
+  animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--bg-primary);
+  border-radius: var(--radius-full);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.species-detail {
+  text-align: center;
+}
+
+.species-image-large {
+  width: 120px;
+  height: 120px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  margin: 0 auto var(--spacing-md);
+}
+
+.species-detail h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: var(--spacing-sm) 0;
+}
+
+.species-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  text-align: center;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.info-value {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.species-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  text-align: left;
+  padding: var(--spacing-md);
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+}
+
+.discovery-info {
+  margin-top: var(--spacing-md);
+  font-size: 12px;
+  color: var(--primary);
+}
+
+/* 토스트 */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--bg-dark);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 200;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast-icon {
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* 레벨업 모달 */
+.level-up-modal .modal-overlay {
+  background: rgba(16, 185, 129, 0.9);
+}
+
+.level-up-content {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding: var(--spacing-xl);
+  z-index: 101;
+}
+
+.level-up-animation {
+  margin-bottom: var(--spacing-lg);
+}
+
+.confetti {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle, #FFD700 2px, transparent 2px),
+    radial-gradient(circle, #FF6B6B 2px, transparent 2px),
+    radial-gradient(circle, #4ECDC4 2px, transparent 2px);
+  background-size: 60px 60px, 40px 40px, 50px 50px;
+  background-position: 0 0, 20px 20px, 40px 10px;
+  animation: confetti-fall 1s infinite linear;
+  opacity: 0.5;
+}
+
+@keyframes confetti-fall {
+  from { background-position: 0 0, 20px 20px, 40px 10px; }
+  to { background-position: 0 60px, 20px 80px, 40px 70px; }
+}
+
+.level-up-content h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+}
+
+.level-up-content p {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-lg);
+}
+
+.level-up-content .btn-primary {
+  background: white;
+  color: var(--primary);
+}
+
+/* 유틸리티 */
+.hidden {
+  display: none !important;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+.slide-up {
+  animation: slideUp 0.3s ease;
+}
+
+/* 반응형 */
+@media (max-width: 375px) {
+  :root {
+    --spacing-md: 12px;
+    --spacing-lg: 20px;
+  }
+
+  .species-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-sm);
+  }
+
+  .species-card-image {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+}
