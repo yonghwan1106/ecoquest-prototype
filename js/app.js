@@ -292,7 +292,7 @@ function addParkMarkers() {
       popupAnchor: [0, -40]
     });
 
-    const marker = L.marker(park.coordinates, { icon: icon })
+    const marker = L.marker([park.lat, park.lng], { icon: icon })
       .addTo(appState.leafletMap);
 
     // 팝업 내용
@@ -352,7 +352,7 @@ function selectParkFromMap(parkId) {
 
   // 해당 위치로 지도 이동
   if (appState.leafletMap) {
-    appState.leafletMap.flyTo(park.coordinates, 15, {
+    appState.leafletMap.flyTo([park.lat, park.lng], 15, {
       duration: 1
     });
   }
