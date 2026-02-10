@@ -808,6 +808,198 @@ body::before {
   transform: translateX(3px);
 }
 
+/* ===== 온보딩 슬라이드 배경 그래디언트 ===== */
+.slide-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slide-bg-crisis {
+  background: linear-gradient(180deg, #1a0a0a 0%, #2d1111 30%, #1F2937 70%, #111827 100%);
+}
+
+.slide-bg-solution {
+  background: linear-gradient(180deg, #0a1a2e 0%, #0d2847 30%, #064E3B 70%, #0a2a1f 100%);
+}
+
+.slide-bg-hero {
+  background: linear-gradient(180deg, #1a1505 0%, #2d2208 30%, #064E3B 70%, #0a2a1f 100%);
+}
+
+.slide-visual {
+  position: relative;
+  z-index: 1;
+}
+
+.slide-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* 온보딩 SVG 일러스트 스타일 */
+.crisis-city-svg {
+  width: 240px;
+  height: 200px;
+  filter: drop-shadow(0 4px 20px rgba(239, 68, 68, 0.2));
+}
+
+.solution-phone-svg {
+  width: 240px;
+  height: 240px;
+  filter: drop-shadow(0 4px 20px rgba(0, 217, 165, 0.2));
+  animation: phonePulse 3s ease-in-out infinite;
+}
+
+@keyframes phonePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.hero-avatar-svg {
+  width: 120px;
+  height: 120px;
+  animation: heroFloat 2s ease-in-out infinite;
+}
+
+/* 위기 슬라이드 - 새 사라짐 애니메이션 */
+.fading-bird {
+  animation: birdFade 3s ease-in-out infinite;
+}
+.fading-bird-1 { animation-delay: 0s; }
+.fading-bird-2 { animation-delay: 0.7s; }
+.fading-bird-3 { animation-delay: 1.4s; }
+
+@keyframes birdFade {
+  0%, 100% { opacity: 0.6; transform: translateY(0) translateX(0); }
+  50% { opacity: 0.15; transform: translateY(-8px) translateX(5px); }
+}
+
+/* 솔루션 슬라이드 - 데이터 라인 애니메이션 */
+.data-line {
+  animation: dataLinePulse 2s ease-in-out infinite;
+}
+.data-line-1 { animation-delay: 0s; }
+.data-line-2 { animation-delay: 0.4s; }
+.data-line-3 { animation-delay: 0.8s; }
+.data-line-4 { animation-delay: 1.2s; }
+
+@keyframes dataLinePulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.ai-brain-icon {
+  animation: brainPulse 2s ease-in-out infinite;
+}
+
+@keyframes brainPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+/* 온보딩 슬라이드 전환 개선 */
+.onboarding-slide {
+  transition: opacity 0.5s ease, transform 0.5s var(--ease-out-expo);
+}
+
+.onboarding-slide.slide-out-left {
+  display: flex;
+  opacity: 0;
+  transform: translateX(-80px);
+}
+
+.onboarding-slide.slide-in-right {
+  display: flex;
+  opacity: 0;
+  transform: translateX(80px);
+}
+
+/* ===== 카드 등장 stagger 애니메이션 ===== */
+@keyframes cardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.screen.active .screen-body > .profile-card,
+.screen.active .screen-body > .impact-summary-card,
+.screen.active .screen-body > .section {
+  animation: cardSlideUp 0.4s var(--ease-out-expo) both;
+}
+
+.screen.active .screen-body > .profile-card { animation-delay: 0.05s; }
+.screen.active .screen-body > .impact-summary-card { animation-delay: 0.1s; }
+.screen.active .screen-body > .section:nth-of-type(1) { animation-delay: 0.15s; }
+.screen.active .screen-body > .section:nth-of-type(2) { animation-delay: 0.2s; }
+.screen.active .screen-body > .section:nth-of-type(3) { animation-delay: 0.25s; }
+.screen.active .screen-body > .section:nth-of-type(4) { animation-delay: 0.3s; }
+
+/* ===== 하단 네비 활성 인디케이터 ===== */
+.nav-item {
+  position: relative;
+}
+
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 0 0 3px 3px;
+  transition: all 0.3s var(--ease-out-expo);
+}
+
+.nav-item .nav-icon svg,
+.nav-item .nav-icon-large svg {
+  transition: transform 0.2s ease;
+}
+
+.nav-item.active .nav-icon svg {
+  transform: scale(1.1);
+}
+
+/* ===== 생물다양성 뱃지 색상 코딩 ===== */
+.biodiversity-badge.S,
+.biodiversity-badge[data-level="S"] {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(217, 119, 6, 0.2));
+  color: #D97706;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.biodiversity-badge.A,
+.biodiversity-badge[data-level="A"] {
+  background: rgba(148, 163, 184, 0.2);
+  color: #94A3B8;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.biodiversity-badge.B,
+.biodiversity-badge[data-level="B"] {
+  background: rgba(180, 130, 90, 0.2);
+  color: #B4825A;
+  border: 1px solid rgba(180, 130, 90, 0.3);
+}
+
+.biodiversity-badge.C,
+.biodiversity-badge[data-level="C"] {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--primary);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
 /* ===== 메인 앱 컨테이너 ===== */
 .app-container {
   width: 100%;
@@ -3236,77 +3428,103 @@ body::before {
 
 /* ===== 가이드 투어 ===== */
 .guide-tour-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 9000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.guide-tour-overlay.active {
+  opacity: 1;
 }
 
 .guide-spotlight {
   position: absolute;
   border-radius: var(--radius-lg);
-  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7);
-  transition: all 0.3s ease;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.65);
+  transition: all 0.5s ease;
+  display: none;
+  z-index: 9001;
 }
 
 .guide-tooltip {
   position: absolute;
   background: white;
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  max-width: 300px;
-  box-shadow: var(--shadow-xl);
-  z-index: 9001;
+  border-radius: 16px;
+  padding: 20px;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  z-index: 9002;
+  transition: opacity 0.3s ease;
 }
 
 .tooltip-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 8px;
 }
 
 .tooltip-step {
   font-size: 12px;
   color: var(--primary);
-  font-weight: 600;
+  font-weight: 700;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 2px 10px;
+  border-radius: 12px;
 }
 
 .tooltip-close {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   background: var(--bg-primary);
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.tooltip-close:hover {
+  background: #e5e7eb;
 }
 
 .guide-tooltip h3 {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: 6px;
+  color: var(--text-primary);
+  line-height: 1.3;
 }
 
 .guide-tooltip p {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-secondary);
-  margin-bottom: var(--spacing-md);
+  margin-bottom: 16px;
+  line-height: 1.6;
 }
 
 .tooltip-nav {
   display: flex;
   justify-content: space-between;
+  gap: 8px;
 }
 
 .tooltip-prev, .tooltip-next {
-  padding: var(--spacing-xs) var(--spacing-md);
+  padding: 8px 20px;
   border: none;
   border-radius: var(--radius-full);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -3316,24 +3534,222 @@ body::before {
   color: var(--text-secondary);
 }
 
+.tooltip-prev:hover {
+  background: #e5e7eb;
+}
+
 .tooltip-next {
   background: var(--primary);
   color: white;
 }
 
+.tooltip-next:hover {
+  background: #059669;
+}
+
 .guide-progress-bar {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.2);
+  height: 5px;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 9003;
 }
 
 .guide-progress-fill {
   height: 100%;
+  background: linear-gradient(90deg, #10B981, #059669, #047857);
+  transition: width 0.5s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* 투어 최종 요약 */
+.tour-final-summary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9005;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.tour-final-summary.visible {
+  opacity: 1;
+}
+
+.tour-summary-card {
+  background: white;
+  border-radius: 24px;
+  padding: 40px 32px;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  text-align: center;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+}
+
+.summary-logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.summary-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  font-weight: 500;
+}
+
+.summary-values {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.summary-value-item {
+  text-align: left;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border-left: 4px solid var(--primary);
+}
+
+.summary-value-item .value-number {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.summary-value-item .value-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.summary-value-item .value-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* 투어 종료 화면 */
+.tour-end-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.tour-end-screen.visible {
+  opacity: 1;
+}
+
+.tour-end-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.tour-end-card {
+  position: relative;
+  background: white;
+  border-radius: 24px;
+  padding: 48px 32px 36px;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  text-align: center;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.end-logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.end-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  background: rgba(16, 185, 129, 0.1);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.end-message {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.end-sub {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.end-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.end-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.end-btn-secondary {
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+}
+
+.end-btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+.end-btn-primary {
   background: var(--primary);
-  transition: width 0.3s ease;
+  color: white;
+}
+
+.end-btn-primary:hover {
+  background: #059669;
 }
 
 /* ===== 모달 ===== */
@@ -3481,7 +3897,7 @@ body::before {
   font-weight: 500;
   box-shadow: var(--shadow-xl);
   opacity: 0;
-  transition: all 0.3s ease;
+  transition: transform 0.4s var(--ease-out-expo), opacity 0.4s var(--ease-out-expo);
   z-index: 20000;
 }
 
@@ -3614,4 +4030,876 @@ body::before {
   .intro-title {
     font-size: 36px;
   }
+}
+
+/* ===== 발견 플로우 단계별 진행바 ===== */
+.analysis-progress-bar {
+  width: 80%;
+  max-width: 280px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.analysis-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  border-radius: 3px;
+  width: 0%;
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* ===== 발견 추가 정보 ===== */
+.discovery-extra-info {
+  width: 100%;
+  max-width: 320px;
+  margin: 12px auto 0;
+  padding: 0 16px;
+}
+
+.extra-info-grid {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.extra-info-item {
+  flex: 1;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.extra-info-label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+
+.extra-info-value {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.observation-tip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 217, 165, 0.08);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  border: 1px solid rgba(0, 217, 165, 0.15);
+}
+
+.tip-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.tip-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ===== 콤보 보너스 팝업 ===== */
+.combo-popup {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  z-index: 10000;
+  background: linear-gradient(135deg, #FBBF24, #F59E0B);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: var(--radius-xl);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s var(--ease-out-expo);
+  box-shadow: 0 8px 32px rgba(251, 191, 36, 0.4);
+}
+
+.combo-popup.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.combo-count {
+  font-size: 20px;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+}
+
+.combo-text {
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* ===== 퀘스트 상세 모달 ===== */
+.quest-detail-modal-content {
+  max-width: 360px;
+  padding: 28px 24px !important;
+}
+
+.quest-detail-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.quest-detail-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.quest-detail-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.quest-detail-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.quest-detail-progress {
+  margin-bottom: 20px;
+}
+
+.quest-detail-progress-bar {
+  height: 10px;
+  background: #E5E7EB;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.quest-detail-progress-fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: 5px;
+  transition: width 0.6s ease;
+}
+
+.quest-detail-progress-text {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.quest-detail-rewards {
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.quest-detail-rewards h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.quest-detail-reward-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.quest-detail-reward-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-secondary);
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+}
+
+.quest-claim-btn {
+  width: 100%;
+  font-size: 16px;
+  padding: 14px;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 217, 165, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(0, 217, 165, 0); }
+}
+
+/* ===== 퀘스트 탭 페이드 ===== */
+.quest-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.quest-content.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ===== 시즌 배너 카드 개선 ===== */
+.seasonal-banner-card {
+  background: linear-gradient(135deg, #FDF2F8, #FCE7F3);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(236, 72, 153, 0.15);
+}
+
+.seasonal-banner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.seasonal-badge-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.seasonal-event-badge {
+  background: linear-gradient(135deg, #EC4899, #F472B6);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.seasonal-days-left {
+  background: #FEF3C7;
+  color: #92400E;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.seasonal-ended {
+  background: #E5E7EB;
+  color: #6B7280;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.seasonal-participants {
+  font-size: 12px;
+  color: #9D174D;
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+/* ===== 포디움 레이아웃 ===== */
+.podium {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 16px 0;
+  margin-bottom: 16px;
+}
+
+.podium-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 110px;
+}
+
+.podium-crown {
+  font-size: 24px;
+  margin-bottom: 4px;
+  animation: crown-bounce 2s ease-in-out infinite;
+}
+
+@keyframes crown-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.podium-avatar {
+  font-size: 32px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 6px;
+}
+
+.podium-player.first .podium-avatar {
+  font-size: 38px;
+  width: 60px;
+  height: 60px;
+  border: 3px solid #FBBF24;
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+}
+
+.podium-player.second .podium-avatar {
+  border: 2px solid #94A3B8;
+}
+
+.podium-player.third .podium-avatar {
+  border: 2px solid #D97706;
+}
+
+.podium-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 2px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.podium-xp {
+  font-size: 10px;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.podium-bar {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  color: #fff;
+}
+
+.podium-bar.bar-1 {
+  height: 80px;
+  background: linear-gradient(180deg, #FBBF24, #F59E0B);
+  font-size: 24px;
+}
+
+.podium-bar.bar-2 {
+  height: 60px;
+  background: linear-gradient(180deg, #94A3B8, #64748B);
+  font-size: 20px;
+}
+
+.podium-bar.bar-3 {
+  height: 44px;
+  background: linear-gradient(180deg, #D97706, #B45309);
+  font-size: 18px;
+}
+
+.podium-rank {
+  opacity: 0.9;
+}
+
+/* ===== 주간 변동 표시 ===== */
+.rank-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.weekly-change {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.weekly-change.up {
+  color: #059669;
+  background: rgba(5, 150, 105, 0.1);
+}
+
+.weekly-change.down {
+  color: #DC2626;
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.weekly-change.same {
+  color: #9CA3AF;
+}
+
+/* ===== 임팩트 차트 12개월 ===== */
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 160px;
+  padding: 0 4px;
+}
+
+.chart-bar-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.chart-bar {
+  width: 100%;
+  min-width: 16px;
+  background: var(--gradient-primary);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.bar-value {
+  font-size: 9px;
+  font-weight: 600;
+  color: #fff;
+  padding-top: 4px;
+  white-space: nowrap;
+}
+
+.bar-label {
+  font-size: 9px;
+  color: var(--text-light);
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+/* ===== 기여도 타임라인 개선 ===== */
+.contribution-timeline {
+  position: relative;
+  padding-left: 24px;
+}
+
+.contribution-timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--primary), rgba(0, 217, 165, 0.1));
+  border-radius: 1px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 16px;
+  padding-left: 16px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -20px;
+  top: 2px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-content {
+  background: var(--bg-card);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-date {
+  font-size: 11px;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.timeline-content p {
+  font-size: 13px;
+  color: var(--text-primary);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* ===== 퀘스트 아이템 클릭 가능 ===== */
+.quest-item-full {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quest-item-full:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.quest-item-full.completed {
+  position: relative;
+  opacity: 0.85;
+}
+
+.quest-item-full.completed::after {
+  content: '\2713';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ===== SVG 아이콘 시스템 ===== */
+.svg-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg-icon svg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* 퀘스트 아이콘 SVG 크기 */
+.quest-icon.svg-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.quest-item-icon.svg-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* 도감 카드 SVG */
+.species-card-image.svg-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* 발견 아이템 SVG */
+.discovery-image.svg-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* 공원 미리보기 SVG */
+.species-mini.svg-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* 시즌 퀘스트 SVG */
+.seasonal-icon.svg-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* 미발견 종: 잠금 상태 SVG */
+.species-card-image.svg-icon.locked {
+  opacity: 0.3;
+  filter: grayscale(1);
+}
+
+.species-card.undiscovered .species-card-image.svg-icon {
+  opacity: 0.3;
+  filter: grayscale(1);
+}
+
+/* 카테고리 아이콘 SVG */
+.category-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 380px) {
+  .species-card-image.svg-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ===== 마이크로 인터랙션 ===== */
+
+/* 버튼 리플 이펙트 */
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  animation: rippleExpand 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes rippleExpand {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 카드 터치 피드백 */
+.profile-card,
+.impact-summary-card,
+.quest-item,
+.quest-item-full,
+.species-card,
+.rank-item,
+.park-item,
+.metric-card,
+.badge-item,
+.nft-item,
+.stat-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.profile-card:active,
+.impact-summary-card:active,
+.quest-item:active,
+.quest-item-full:active,
+.species-card:active,
+.rank-item:active,
+.park-item:active,
+.metric-card:active,
+.badge-item:active,
+.nft-item:active,
+.stat-card:active {
+  transform: scale(0.98);
+  opacity: 0.85;
+}
+
+/* 탭 전환 슬라이딩 인디케이터 */
+.quest-tabs,
+.ranking-tabs {
+  position: relative;
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  height: calc(100% - 8px);
+  background: var(--gradient-primary);
+  border-radius: var(--radius-sm);
+  transition: transform 0.3s var(--ease-out-expo), width 0.3s var(--ease-out-expo);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.quest-tabs .tab-btn,
+.ranking-tabs .tab-btn {
+  position: relative;
+  z-index: 1;
+}
+
+/* 토스트 개선 - 아이콘+색상 구분 */
+
+.toast.toast-success .toast-icon {
+  background: #10B981;
+}
+
+.toast.toast-info .toast-icon {
+  background: #3B82F6;
+}
+
+.toast.toast-reward .toast-icon {
+  background: #F59E0B;
+}
+
+.toast.toast-error .toast-icon {
+  background: #EF4444;
+}
+
+/* 현재 위치 마커 펄스 개선 */
+.current-location-icon .location-dot {
+  width: 14px;
+  height: 14px;
+  background: #3B82F6;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.5);
+  position: relative;
+}
+
+.current-location-icon .location-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(59, 130, 246, 0.4);
+  border-radius: 50%;
+  animation: locationPulse 2s ease-out infinite;
+}
+
+@keyframes locationPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Leaflet 공원 마커 아이콘 */
+.park-marker-icon {
+  background: none !important;
+  border: none !important;
+}
+
+.park-marker-icon .marker-content {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border: 3px solid white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.park-marker-icon .marker-content:hover {
+  transform: scale(1.15);
+}
+
+/* Leaflet 팝업 개선 */
+.park-popup {
+  text-align: center;
+  min-width: 160px;
+}
+
+.park-popup h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.park-popup .park-area {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.park-popup .park-biodiversity {
+  margin-bottom: 8px;
+}
+
+.park-popup .park-species-preview {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+/* ===== GPU 가속 최적화 ===== */
+.screen,
+.onboarding-slide,
+.toast,
+.modal-content,
+.nav-icon-large,
+.scan-line,
+.xp-shimmer,
+.camera-pulse,
+.combo-popup {
+  will-change: transform, opacity;
+}
+
+.ripple {
+  will-change: transform, opacity;
+}
+
+/* 애니메이션 종료 후 will-change 해제 (JS에서 제어) */
+.no-will-change {
+  will-change: auto;
+}
+
+/* 버튼 리플 이펙트 (CSS-only fallback) */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
+  top: 50%;
+  left: 50%;
+  transform: scale(0);
+  opacity: 1;
+  pointer-events: none;
+}
+.btn-ripple:active::after {
+  transform: scale(4);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+/* 카드 프레스 피드백 (범용 클래스) */
+.card-press {
+  transition: transform 0.15s ease;
+}
+.card-press:active {
+  transform: scale(0.98);
+  filter: brightness(0.95);
+}
+
+/* ===== 화면 전환 부드러운 transition ===== */
+.screen {
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }

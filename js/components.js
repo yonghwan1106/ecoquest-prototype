@@ -6,8 +6,8 @@ function createQuestItem(quest, progress) {
   const isComplete = progress >= quest.goal;
 
   return `
-    <div class="quest-item ${isComplete ? 'completed' : ''}" data-quest-id="${quest.id}">
-      <div class="quest-icon">${quest.icon}</div>
+    <div class="quest-item card-press ${isComplete ? 'completed' : ''}" data-quest-id="${quest.id}">
+      <div class="quest-icon svg-icon">${quest.icon}</div>
       <div class="quest-info">
         <div class="quest-title">${quest.title}</div>
         <div class="quest-progress-text">${progress}/${quest.goal}</div>
@@ -29,9 +29,9 @@ function createQuestItemFull(quest, progress) {
   const isComplete = progress >= quest.goal;
 
   return `
-    <div class="quest-item-full ${isComplete ? 'completed' : ''}" data-quest-id="${quest.id}">
+    <div class="quest-item-full card-press ${isComplete ? 'completed' : ''}" data-quest-id="${quest.id}">
       <div class="quest-item-header">
-        <div class="quest-item-icon">${quest.icon}</div>
+        <div class="quest-item-icon svg-icon">${quest.icon}</div>
         <div class="quest-item-info">
           <div class="quest-item-title">${quest.title}</div>
           <div class="quest-item-desc">${quest.description}</div>
@@ -56,7 +56,7 @@ function createQuestItemFull(quest, progress) {
 function createDiscoveryItem(species) {
   return `
     <div class="discovery-item" onclick="showSpeciesDetail(${species.id})">
-      <div class="discovery-image">${species.image}</div>
+      <div class="discovery-image svg-icon">${species.image}</div>
       <div class="discovery-name">${species.name}</div>
     </div>
   `;
@@ -71,7 +71,7 @@ function createParkItem(park) {
   };
 
   return `
-    <div class="park-item" onclick="selectPark(${park.id})">
+    <div class="park-item card-press" onclick="selectPark(${park.id})">
       <div class="park-icon">🏞️</div>
       <div class="park-info">
         <div class="park-name">${park.name}</div>
@@ -84,11 +84,12 @@ function createParkItem(park) {
 
 // 생물 카드 컴포넌트
 function createSpeciesCard(species, isDiscovered) {
+  const lockedSvg = species.image ? species.image.replace(/fill="[^"]*"/g, 'fill="#9CA3AF"') : '';
   return `
-    <div class="species-card ${isDiscovered ? 'discovered' : 'undiscovered'}"
+    <div class="species-card card-press ${isDiscovered ? 'discovered' : 'undiscovered'}"
          onclick="${isDiscovered ? `showSpeciesDetail(${species.id})` : ''}">
       <div class="species-card-rarity ${species.rarity}"></div>
-      <div class="species-card-image">${isDiscovered ? species.image : '❓'}</div>
+      <div class="species-card-image svg-icon${isDiscovered ? '' : ' locked'}">${isDiscovered ? species.image : lockedSvg || '❓'}</div>
       <div class="species-card-name">${isDiscovered ? species.name : '???'}</div>
     </div>
   `;
@@ -190,32 +191,43 @@ function createNFTItem(nft) {
 // 시즌 퀘스트 배너 컴포넌트
 function createSeasonalBanner(quest, progress) {
   const progressPercent = Math.min((progress / quest.goal) * 100, 100);
+  const daysLeft = Math.max(0, Math.ceil((new Date(quest.endDate) - new Date()) / (1000 * 60 * 60 * 24)));
+  const participantsText = quest.participants ? `${quest.participants.toLocaleString()}명 참여 중` : '';
 
   return `
-    <div class="seasonal-icon">${quest.icon}</div>
-    <h3 class="seasonal-title">${quest.title}</h3>
-    <p class="seasonal-desc">${quest.description}</p>
-    <div class="seasonal-progress">
-      <div class="quest-progress-bar-full">
-        <div class="quest-progress-fill-full" style="width: ${progressPercent}%; background: #EC4899;"></div>
+    <div class="seasonal-banner-card" data-quest-id="${quest.id}">
+      <div class="seasonal-banner-header">
+        <div class="seasonal-icon svg-icon">${quest.icon}</div>
+        <div class="seasonal-badge-area">
+          <span class="seasonal-event-badge">시즌 이벤트</span>
+          ${daysLeft > 0 ? `<span class="seasonal-days-left">D-${daysLeft}</span>` : '<span class="seasonal-ended">종료됨</span>'}
+        </div>
       </div>
-      <div class="quest-progress-text-full" style="color: #9D174D;">${progress}/${quest.goal}</div>
+      <h3 class="seasonal-title">${quest.title}</h3>
+      <p class="seasonal-desc">${quest.description}</p>
+      ${participantsText ? `<p class="seasonal-participants">👥 ${participantsText}</p>` : ''}
+      <div class="seasonal-progress">
+        <div class="quest-progress-bar-full">
+          <div class="quest-progress-fill-full" style="width: ${progressPercent}%; background: linear-gradient(90deg, #EC4899, #F472B6);"></div>
+        </div>
+        <div class="quest-progress-text-full" style="color: #9D174D;">${progress}/${quest.goal}</div>
+      </div>
+      <div class="seasonal-rewards">
+        <div class="seasonal-reward">
+          <span class="seasonal-reward-icon">⭐</span>
+          <span class="seasonal-reward-label">${quest.reward.xp} XP</span>
+        </div>
+        <div class="seasonal-reward">
+          <span class="seasonal-reward-icon">🪙</span>
+          <span class="seasonal-reward-label">${quest.reward.token} 토큰</span>
+        </div>
+        <div class="seasonal-reward">
+          <span class="seasonal-reward-icon">🎨</span>
+          <span class="seasonal-reward-label">NFT</span>
+        </div>
+      </div>
+      <p class="seasonal-end-date">종료: ${quest.endDate}</p>
     </div>
-    <div class="seasonal-rewards">
-      <div class="seasonal-reward">
-        <span class="seasonal-reward-icon">⭐</span>
-        <span class="seasonal-reward-label">${quest.reward.xp} XP</span>
-      </div>
-      <div class="seasonal-reward">
-        <span class="seasonal-reward-icon">🪙</span>
-        <span class="seasonal-reward-label">${quest.reward.token} 토큰</span>
-      </div>
-      <div class="seasonal-reward">
-        <span class="seasonal-reward-icon">🎨</span>
-        <span class="seasonal-reward-label">NFT</span>
-      </div>
-    </div>
-    <p class="seasonal-end-date">종료: ${quest.endDate}</p>
   `;
 }
 
@@ -245,7 +257,7 @@ function createParkInfoContent(park) {
 
   const speciesPreview = park.species.slice(0, 6).map(speciesId => {
     const species = speciesData.find(s => s.id === speciesId);
-    return species ? `<div class="species-mini">${species.image}</div>` : '';
+    return species ? `<div class="species-mini svg-icon">${species.image}</div>` : '';
   }).join('');
 
   return {

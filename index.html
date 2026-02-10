@@ -30,9 +30,9 @@
       <!-- 로고 애니메이션 -->
       <div class="intro-logo-container">
         <div class="intro-logo">
-          <div class="logo-leaf leaf-1">🌿</div>
-          <div class="logo-leaf leaf-2">🍃</div>
-          <div class="logo-leaf leaf-3">🌱</div>
+          <div class="logo-leaf leaf-1"><svg viewBox="0 0 32 32" width="44" height="44" fill="none"><path d="M16 4C10 4 4 10 4 18c0 2 .5 3 1 4l1-1c2-4 6-8 12-10-4 4-7 9-8 14h2c1-5 4-10 9-14 1-1 2-2 3-2 0 0-1 6-5 10l1 1c4-3 7-8 7-13C28 7 22 4 16 4z" fill="#5DFFC2"/></svg></div>
+          <div class="logo-leaf leaf-2"><svg viewBox="0 0 32 32" width="36" height="36" fill="none"><path d="M6 26C6 26 8 6 26 4c0 0-2 8-8 14 6-2 10-6 10-6s-4 10-14 14c-2 0-4 0-6-2l-2 2z" fill="#2DD4A0" opacity="0.9"/></svg></div>
+          <div class="logo-leaf leaf-3"><svg viewBox="0 0 32 32" width="36" height="36" fill="none"><path d="M16 28V14M16 14c0-6 4-10 4-10s-8 2-8 10h8z" stroke="#5DFFC2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="#2DD4A0" fill-opacity="0.3"/></svg></div>
           <div class="logo-circle"></div>
         </div>
         <h1 class="intro-title">EcoQuest</h1>
@@ -66,7 +66,7 @@
 
       <!-- 가이드 투어 버튼 -->
       <button class="guide-tour-btn" onclick="startGuideTour()">
-        <span>🎯</span>
+        <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></span>
         <span>심사위원용 3분 데모</span>
       </button>
     </div>
@@ -77,15 +77,33 @@
     <div class="onboarding-container">
       <!-- 슬라이드 1: 위기 -->
       <div class="onboarding-slide active" data-slide="1">
+        <div class="slide-bg slide-bg-crisis"></div>
         <div class="slide-visual">
           <div class="crisis-animation">
-            <div class="city-silhouette"></div>
+            <svg class="crisis-city-svg" viewBox="0 0 240 200" fill="none">
+              <rect x="10" y="100" width="28" height="100" rx="2" fill="#374151" opacity="0.8"/>
+              <rect x="18" y="80" width="16" height="120" rx="2" fill="#4B5563" opacity="0.7"/>
+              <rect x="45" y="60" width="22" height="140" rx="2" fill="#374151" opacity="0.9"/>
+              <rect x="75" y="90" width="30" height="110" rx="2" fill="#4B5563" opacity="0.8"/>
+              <rect x="85" y="50" width="18" height="150" rx="2" fill="#374151" opacity="0.85"/>
+              <rect x="115" y="70" width="26" height="130" rx="2" fill="#4B5563" opacity="0.75"/>
+              <rect x="130" y="40" width="20" height="160" rx="2" fill="#374151" opacity="0.9"/>
+              <rect x="155" y="80" width="24" height="120" rx="2" fill="#4B5563" opacity="0.8"/>
+              <rect x="185" y="95" width="22" height="105" rx="2" fill="#374151" opacity="0.7"/>
+              <rect x="200" y="60" width="30" height="140" rx="2" fill="#4B5563" opacity="0.85"/>
+              <rect x="50" y="70" width="4" height="4" rx="1" fill="#FBBF24" opacity="0.5"/>
+              <rect x="56" y="70" width="4" height="4" rx="1" fill="#FBBF24" opacity="0.3"/>
+              <rect x="90" y="60" width="4" height="4" rx="1" fill="#FBBF24" opacity="0.6"/>
+              <rect x="135" y="50" width="4" height="4" rx="1" fill="#FBBF24" opacity="0.4"/>
+              <g class="fading-bird fading-bird-1"><path d="M40 30 Q45 22 50 30 Q45 26 40 30Z" fill="rgba(255,255,255,0.6)"/></g>
+              <g class="fading-bird fading-bird-2"><path d="M80 20 Q86 10 92 20 Q86 15 80 20Z" fill="rgba(255,255,255,0.4)"/></g>
+              <g class="fading-bird fading-bird-3"><path d="M160 25 Q165 17 170 25 Q165 21 160 25Z" fill="rgba(255,255,255,0.3)"/></g>
+              <path d="M180 140 L210 170" stroke="#EF4444" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+              <path d="M200 170 L210 170 L210 160" stroke="#EF4444" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+              <circle cx="60" cy="45" r="15" fill="#EF4444" opacity="0.08"><animate attributeName="r" values="15;20;15" dur="3s" repeatCount="indefinite"/></circle>
+              <circle cx="140" cy="35" r="20" fill="#EF4444" opacity="0.06"><animate attributeName="r" values="20;28;20" dur="4s" repeatCount="indefinite"/></circle>
+            </svg>
             <div class="pollution-overlay"></div>
-            <div class="species-fading">
-              <span class="fading-species">🦋</span>
-              <span class="fading-species">🐦</span>
-              <span class="fading-species">🌸</span>
-            </div>
           </div>
         </div>
         <div class="slide-content">
@@ -96,17 +114,44 @@
 
       <!-- 슬라이드 2: 솔루션 -->
       <div class="onboarding-slide" data-slide="2">
+        <div class="slide-bg slide-bg-solution"></div>
         <div class="slide-visual">
           <div class="solution-animation">
-            <div class="phone-mockup">
-              <div class="phone-screen">📱</div>
-            </div>
-            <div class="data-streams">
-              <div class="stream stream-1">🦋</div>
-              <div class="stream stream-2">🐦</div>
-              <div class="stream stream-3">🌿</div>
-            </div>
-            <div class="cloud-icon">☁️</div>
+            <svg class="solution-phone-svg" viewBox="0 0 240 240" fill="none">
+              <rect x="80" y="30" width="80" height="140" rx="16" fill="#1F2937" stroke="#4B5563" stroke-width="2"/>
+              <rect x="88" y="44" width="64" height="112" rx="4" fill="#111827"/>
+              <rect x="92" y="48" width="56" height="20" rx="3" fill="#065F46" opacity="0.8"/>
+              <text x="120" y="62" text-anchor="middle" fill="#5DFFC2" font-size="8" font-weight="600">EcoQuest</text>
+              <circle cx="120" cy="90" r="14" fill="#064E3B" stroke="#10B981" stroke-width="1.5"/>
+              <path d="M114 90 Q120 80 126 90 Q120 85 114 90Z" fill="#5DFFC2"/>
+              <rect x="96" y="112" width="48" height="6" rx="3" fill="#374151"/><rect x="96" y="112" width="30" height="6" rx="3" fill="#10B981"/>
+              <rect x="96" y="124" width="48" height="6" rx="3" fill="#374151"/><rect x="96" y="124" width="20" height="6" rx="3" fill="#FBBF24"/>
+              <rect x="104" y="34" width="32" height="6" rx="3" fill="#374151"/>
+              <g class="data-line data-line-1">
+                <line x1="40" y1="60" x2="80" y2="80" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+                <circle cx="36" cy="58" r="12" fill="#064E3B" stroke="#10B981" stroke-width="1.5"/>
+                <path d="M30 58 Q36 50 42 58 Q36 53 30 58Z" fill="#5DFFC2" transform="scale(0.8) translate(8 12)"/>
+              </g>
+              <g class="data-line data-line-2">
+                <line x1="160" y1="70" x2="200" y2="50" stroke="#6366F1" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+                <circle cx="204" cy="48" r="12" fill="#312E81" stroke="#6366F1" stroke-width="1.5"/>
+                <path d="M198 48 L204 42 L210 48 M204 42 V55" stroke="#A5B4FC" stroke-width="1.5" stroke-linecap="round"/>
+              </g>
+              <g class="data-line data-line-3">
+                <line x1="40" y1="160" x2="80" y2="140" stroke="#FBBF24" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+                <circle cx="36" cy="162" r="12" fill="#451A03" stroke="#FBBF24" stroke-width="1.5"/>
+                <path d="M32 166 Q36 154 40 166" stroke="#FBBF24" stroke-width="1.5" fill="none"/>
+              </g>
+              <g class="data-line data-line-4">
+                <line x1="160" y1="150" x2="200" y2="170" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+                <circle cx="204" cy="172" r="12" fill="#064E3B" stroke="#10B981" stroke-width="1.5"/>
+                <path d="M199 172 C202 165 206 165 209 172 C206 169 202 169 199 172Z" fill="#5DFFC2"/>
+              </g>
+              <g class="ai-brain-icon">
+                <circle cx="120" cy="12" r="10" fill="#312E81" stroke="#6366F1" stroke-width="1.5"/>
+                <path d="M115 12 Q115 8 118 8 Q120 6 122 8 Q125 8 125 12 Q125 16 122 16 Q120 18 118 16 Q115 16 115 12Z" stroke="#A5B4FC" stroke-width="1" fill="none"/>
+              </g>
+            </svg>
           </div>
         </div>
         <div class="slide-content">
@@ -117,14 +162,21 @@
 
       <!-- 슬라이드 3: 영웅 -->
       <div class="onboarding-slide" data-slide="3">
+        <div class="slide-bg slide-bg-hero"></div>
         <div class="slide-visual">
           <div class="hero-animation">
-            <div class="hero-avatar">🌿</div>
+            <svg class="hero-avatar-svg" viewBox="0 0 120 120" fill="none">
+              <circle cx="60" cy="60" r="50" fill="#064E3B" stroke="#5DFFC2" stroke-width="3"/>
+              <circle cx="60" cy="60" r="54" stroke="#5DFFC2" stroke-width="1" opacity="0.3" stroke-dasharray="6 4"/>
+              <circle cx="60" cy="45" r="16" fill="#10B981"/>
+              <path d="M30 95 Q30 70 60 65 Q90 70 90 95" fill="#10B981"/>
+              <path d="M75 35 Q85 25 80 40 Q78 35 75 35Z" fill="#5DFFC2"/>
+            </svg>
             <div class="hero-glow"></div>
             <div class="achievement-badges">
-              <span class="badge-float">🏅</span>
-              <span class="badge-float">⭐</span>
-              <span class="badge-float">🏆</span>
+              <span class="badge-float"><svg viewBox="0 0 32 32" width="30" height="30" fill="none"><circle cx="16" cy="13" r="10" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/><path d="M12 13 L15 16 L20 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 23 L16 27 L22 23" stroke="#D97706" stroke-width="2" fill="#FBBF24"/></svg></span>
+              <span class="badge-float"><svg viewBox="0 0 32 32" width="30" height="30" fill="none"><path d="M16 4 L19 12 L28 12 L21 18 L23 26 L16 21 L9 26 L11 18 L4 12 L13 12Z" fill="#FBBF24" stroke="#D97706" stroke-width="1"/></svg></span>
+              <span class="badge-float"><svg viewBox="0 0 32 32" width="30" height="30" fill="none"><path d="M8 28 V14 L16 6 L24 14 V28 Z" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/><rect x="13" y="18" width="6" height="10" fill="#D97706"/></svg></span>
             </div>
           </div>
         </div>
@@ -158,8 +210,8 @@
     <div class="status-bar">
       <span class="time" id="statusTime">9:41</span>
       <div class="status-icons">
-        <span>📶</span>
-        <span>🔋</span>
+        <span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 20h2V10h-2zM7 20h2V7H7zM12 20h2V4h-2zM17 20h2V9h-2z" fill="currentColor" stroke="none" opacity="0.9"/></svg></span>
+        <span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="18" height="10" rx="2"/><path d="M22 11v2" stroke-width="3"/><rect x="4" y="9" width="12" height="6" rx="1" fill="currentColor" opacity="0.8"/></svg></span>
       </div>
     </div>
 
@@ -168,14 +220,14 @@
       <div class="guide-spotlight" id="guideSpotlight"></div>
       <div class="guide-tooltip" id="guideTooltip">
         <div class="tooltip-header">
-          <span class="tooltip-step" id="tooltipStep">1/7</span>
+          <span class="tooltip-step" id="tooltipStep">1 / 18</span>
           <button class="tooltip-close" onclick="endGuideTour()">✕</button>
         </div>
-        <h3 id="tooltipTitle">홈 대시보드</h3>
-        <p id="tooltipDesc">사용자의 레벨, XP, 에코토큰을 한눈에 확인할 수 있습니다.</p>
+        <h3 id="tooltipTitle"></h3>
+        <p id="tooltipDesc"></p>
         <div class="tooltip-nav">
-          <button class="tooltip-prev" onclick="prevGuideStep()">← 이전</button>
-          <button class="tooltip-next" onclick="nextGuideStep()">다음 →</button>
+          <button class="tooltip-prev" onclick="prevGuideStep()">이전</button>
+          <button class="tooltip-next" onclick="nextGuideStep()">다음</button>
         </div>
       </div>
       <div class="guide-progress-bar">
@@ -194,7 +246,7 @@
             <span class="contest-mini-badge">조경2050</span>
           </div>
           <button class="btn-icon" onclick="showScreen('profile')">
-            <span class="user-avatar">🌿</span>
+            <span class="user-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20 Q4 14 12 13 Q20 14 20 20"/></svg></span>
           </button>
         </header>
 
@@ -204,14 +256,14 @@
             <div class="hero-card-bg"></div>
             <div class="profile-info">
               <div class="avatar-large animated-avatar">
-                <span class="avatar-emoji">🌿</span>
+                <span class="avatar-emoji"><svg viewBox="0 0 36 36" width="36" height="36" fill="none"><circle cx="18" cy="14" r="7" fill="#5DFFC2"/><path d="M6 32 Q6 22 18 20 Q30 22 30 32" fill="#5DFFC2"/><path d="M24 10 Q28 5 26 13 Q25 11 24 10Z" fill="#A7F3D0"/></svg></span>
                 <div class="avatar-ring"></div>
                 <div class="avatar-particles"></div>
               </div>
               <div class="profile-details">
                 <h2 id="userName">에코탐험가</h2>
                 <div class="level-badge animated-level">
-                  <span class="level-icon">⭐</span>
+                  <span class="level-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 2 L14.5 8.5 L22 9.5 L16.5 14.5 L18 22 L12 18.5 L6 22 L7.5 14.5 L2 9.5 L9.5 8.5Z" fill="#FBBF24" stroke="#D97706" stroke-width="1"/></svg></span>
                   Lv.<span id="userLevel">5</span>
                 </div>
               </div>
@@ -226,7 +278,7 @@
             </div>
             <div class="token-display">
               <div class="token-coin">
-                <span class="coin-icon">🪙</span>
+                <span class="coin-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><circle cx="12" cy="12" r="10" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#D97706" stroke-width="1" opacity="0.5"/><text x="12" y="16" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">E</text></svg></span>
                 <span class="coin-shine"></span>
               </div>
               <span id="userTokens">125</span> 에코토큰
@@ -236,7 +288,7 @@
           <!-- 임팩트 카드 (NEW) -->
           <div class="impact-summary-card" onclick="showScreen('impact')">
             <div class="impact-header">
-              <span class="impact-icon">🌍</span>
+              <span class="impact-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><circle cx="12" cy="12" r="10" fill="#064E3B" stroke="#10B981" stroke-width="1.5"/><path d="M6 10 Q8 6 12 7 Q14 8 13 11 Q12 14 8 14 Q6 13 6 10Z" fill="#10B981" opacity="0.7"/><path d="M14 8 Q18 7 19 12 Q18 16 15 16 Q13 15 14 12 Q15 10 14 8Z" fill="#10B981" opacity="0.5"/></svg></span>
               <h3>나의 생태 기여도</h3>
             </div>
             <div class="impact-stats-mini">
@@ -262,7 +314,7 @@
           <!-- 오늘의 퀘스트 -->
           <section class="section">
             <div class="section-header">
-              <h3>🎯 오늘의 퀘스트</h3>
+              <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align: -3px; margin-right: 4px;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>오늘의 퀘스트</h3>
               <a href="#" onclick="showScreen('quests'); return false;">전체보기</a>
             </div>
             <div class="quest-list" id="todayQuests"></div>
@@ -271,7 +323,7 @@
           <!-- 최근 발견 -->
           <section class="section">
             <div class="section-header">
-              <h3>🔍 최근 발견</h3>
+              <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align: -3px; margin-right: 4px;"><circle cx="11" cy="11" r="7"/><path d="M16 16 L21 21"/></svg>최근 발견</h3>
               <a href="#" onclick="showScreen('collection'); return false;">도감보기</a>
             </div>
             <div class="discovery-preview" id="recentDiscoveries"></div>
@@ -280,7 +332,7 @@
           <!-- 주변 공원 -->
           <section class="section">
             <div class="section-header">
-              <h3>🏞️ 주변 탐험지</h3>
+              <h3><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 4px;"><path d="M2 20 L8 10 L14 16 L18 12 L22 20Z"/><circle cx="7" cy="6" r="2"/></svg>주변 탐험지</h3>
               <a href="#" onclick="showScreen('explore'); return false;">지도보기</a>
             </div>
             <div class="park-list" id="nearbyParks"></div>
@@ -291,13 +343,13 @@
       <!-- 2. 탐험 화면 (Leaflet 지도) -->
       <section id="screen-explore" class="screen">
         <header class="screen-header explore-header">
-          <h1>🗺️ 탐험</h1>
+          <h1><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 4px;"><path d="M3 6 L9 3 L15 6 L21 3 V18 L15 21 L9 18 L3 21Z"/><path d="M9 3 V18"/><path d="M15 6 V21"/></svg>탐험</h1>
           <div class="header-actions">
             <button class="btn-icon" onclick="toggleHeatmap()" id="heatmapToggle">
-              <span>🔥</span>
+              <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22c-4-4-8-7.5-8-12a8 8 0 1 1 16 0c0 4.5-4 8-8 12z"/><circle cx="12" cy="10" r="3" fill="currentColor" opacity="0.5"/></svg></span>
             </button>
             <button class="btn-icon" onclick="centerOnUser()">
-              <span>📍</span>
+              <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>
             </button>
           </div>
         </header>
@@ -321,7 +373,7 @@
           <!-- AR 카메라 버튼 -->
           <button class="ar-camera-btn pulse-btn" onclick="startDiscovery()">
             <div class="btn-glow"></div>
-            <span class="camera-icon">📷</span>
+            <span class="camera-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
             <span>AI로 생물 발견하기</span>
           </button>
 
@@ -336,12 +388,12 @@
             <div class="park-species-preview" id="parkSpeciesPreview"></div>
             <div class="park-stats">
               <div class="park-stat">
-                <span class="stat-icon">🔍</span>
+                <span class="stat-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16 16 L21 21"/></svg></span>
                 <span id="parkDiscoveryCount">156</span>
                 <span>발견</span>
               </div>
               <div class="park-stat">
-                <span class="stat-icon">👥</span>
+                <span class="stat-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
                 <span id="parkVisitorCount">42</span>
                 <span>탐험가</span>
               </div>
@@ -407,15 +459,15 @@
               <div class="result-glow"></div>
               <div class="species-image" id="resultImage">🦋</div>
               <div class="sparkles">
-                <span class="sparkle">✨</span>
-                <span class="sparkle">⭐</span>
-                <span class="sparkle">💫</span>
-                <span class="sparkle">✨</span>
+                <span class="sparkle"><svg viewBox="0 0 24 24" width="16" height="16" fill="#FBBF24"><path d="M12 2 L13.5 8.5 L20 10 L13.5 11.5 L12 18 L10.5 11.5 L4 10 L10.5 8.5Z"/></svg></span>
+                <span class="sparkle"><svg viewBox="0 0 24 24" width="14" height="14" fill="#FBBF24"><path d="M12 2 L14 9 L21 9.5 L15 14 L17 21 L12 17 L7 21 L9 14 L3 9.5 L10 9Z"/></svg></span>
+                <span class="sparkle"><svg viewBox="0 0 24 24" width="16" height="16" fill="#FBBF24"><path d="M12 2 L13.5 8.5 L20 10 L13.5 11.5 L12 18 L10.5 11.5 L4 10 L10.5 8.5Z"/></svg></span>
+                <span class="sparkle"><svg viewBox="0 0 24 24" width="12" height="12" fill="#FBBF24"><path d="M12 2 L14 9 L21 9.5 L15 14 L17 21 L12 17 L7 21 L9 14 L3 9.5 L10 9Z"/></svg></span>
               </div>
             </div>
 
             <div class="result-badge-container">
-              <span class="new-discovery-badge" id="newDiscoveryBadge">🎉 신규 발견!</span>
+              <span class="new-discovery-badge" id="newDiscoveryBadge"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" style="vertical-align: -2px; margin-right: 2px;"><path d="M12 2 C6 8 2 12 2 16 C2 20 6 22 12 22 C18 22 22 20 22 16 C22 12 18 8 12 2Z" fill="#FBBF24"/><path d="M8 14 L10 18 L12 14 L14 18 L16 14" stroke="#D97706" stroke-width="1.5" fill="none"/></svg> 신규 발견!</span>
             </div>
 
             <div class="result-info">
@@ -427,11 +479,11 @@
 
             <div class="reward-display animated-rewards">
               <div class="reward-item xp-reward">
-                <span class="reward-icon">⭐</span>
+                <span class="reward-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M12 2 L14.5 8.5 L22 9.5 L16.5 14.5 L18 22 L12 18.5 L6 22 L7.5 14.5 L2 9.5 L9.5 8.5Z" fill="#FBBF24" stroke="#D97706" stroke-width="1"/></svg></span>
                 <span class="reward-value" id="rewardXp">+50 XP</span>
               </div>
               <div class="reward-item token-reward">
-                <span class="reward-icon">🪙</span>
+                <span class="reward-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="12" cy="12" r="10" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#D97706" stroke-width="1" opacity="0.5"/><text x="12" y="16" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">E</text></svg></span>
                 <span class="reward-value" id="rewardToken">+5 토큰</span>
               </div>
             </div>
@@ -447,7 +499,7 @@
       <!-- 4. 도감 화면 -->
       <section id="screen-collection" class="screen">
         <header class="screen-header">
-          <h1>📚 생물 도감</h1>
+          <h1><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 4px;"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>생물 도감</h1>
           <div class="collection-stats">
             <span id="collectionCount">12</span>/<span id="collectionTotal">38</span>
           </div>
@@ -456,11 +508,11 @@
         <div class="screen-body">
           <div class="category-filter">
             <button class="filter-btn active" data-category="all">전체</button>
-            <button class="filter-btn" data-category="bird">🐦 조류</button>
-            <button class="filter-btn" data-category="insect">🦋 곤충</button>
-            <button class="filter-btn" data-category="plant">🌿 식물</button>
-            <button class="filter-btn" data-category="amphibian">🐸 양서류</button>
-            <button class="filter-btn" data-category="mammal">🐿️ 포유류</button>
+            <button class="filter-btn" data-category="bird"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align: -2px;"><path d="M16 7 Q20 3 22 7 L18 11 Q14 9 12 11 L8 13 Q4 14 3 17 L2 20 Q6 16 10 15 L14 13 Q16 12 16 7Z"/></svg> 조류</button>
+            <button class="filter-btn" data-category="insect"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align: -2px;"><path d="M8 8 Q12 2 16 8 Q18 12 16 16 Q12 20 8 16 Q6 12 8 8Z"/><path d="M8 12 Q5 10 3 8M16 12 Q19 10 21 8M8 14 Q5 16 3 18M16 14 Q19 16 21 18"/></svg> 곤충</button>
+            <button class="filter-btn" data-category="plant"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align: -2px;"><path d="M12 22 V12 M12 12 C12 6 16 2 16 2 S8 6 12 12Z"/></svg> 식물</button>
+            <button class="filter-btn" data-category="amphibian"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align: -2px;"><ellipse cx="12" cy="14" rx="8" ry="6"/><circle cx="8" cy="8" r="2"/><circle cx="16" cy="8" r="2"/></svg> 양서류</button>
+            <button class="filter-btn" data-category="mammal"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align: -2px;"><ellipse cx="12" cy="14" rx="6" ry="5"/><path d="M6 14 Q4 8 6 5M18 14 Q20 8 18 5"/><circle cx="12" cy="8" r="4"/></svg> 포유류</button>
           </div>
 
           <div class="species-grid" id="speciesGrid"></div>
@@ -470,9 +522,9 @@
       <!-- 5. 퀘스트 화면 -->
       <section id="screen-quests" class="screen">
         <header class="screen-header">
-          <h1>🎯 퀘스트</h1>
+          <h1><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align: -3px; margin-right: 4px;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>퀘스트</h1>
           <div class="streak-badge animated-streak">
-            <span class="fire-icon">🔥</span>
+            <span class="fire-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M12 22c-4 0-7-3-7-7 0-3 2-5 4-7 0 2 1 3 2 3 0-4 3-8 5-9 0 3 3 6 3 10 0 4-3 7-7 10z" fill="#EF4444" stroke="#DC2626" stroke-width="1"/><path d="M12 22c-2 0-4-2-4-4 0-1.5 1-3 2.5-4 0 1 .5 1.5 1 1.5 0-2 1.5-4 2.5-5 0 1.5 1.5 3 1.5 5 0 2-1.5 4-3.5 6.5z" fill="#FBBF24"/></svg></span>
             <span id="streakDays">7</span>일 연속
           </div>
         </header>
@@ -501,7 +553,7 @@
       <!-- 6. 리더보드 화면 -->
       <section id="screen-leaderboard" class="screen">
         <header class="screen-header">
-          <h1>🏆 랭킹</h1>
+          <h1><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 4px;"><path d="M6 9H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-2"/><path d="M6 3v6c0 3.3 2.7 6 6 6s6-2.7 6-6V3"/><path d="M12 15v4"/><path d="M8 21h8"/></svg>랭킹</h1>
         </header>
 
         <div class="screen-body">
@@ -525,14 +577,14 @@
           </button>
           <h1>내 프로필</h1>
           <button class="btn-icon">
-            <span>⚙️</span>
+            <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
           </button>
         </header>
 
         <div class="screen-body">
           <div class="profile-header-large">
             <div class="avatar-xlarge animated-avatar">
-              <span>🌿</span>
+              <span><svg viewBox="0 0 48 48" width="48" height="48" fill="none"><circle cx="24" cy="18" r="10" fill="#5DFFC2"/><path d="M6 44 Q6 30 24 27 Q42 30 42 44" fill="#5DFFC2"/><path d="M32 12 Q38 6 35 18 Q34 14 32 12Z" fill="#A7F3D0"/></svg></span>
               <div class="avatar-ring"></div>
             </div>
             <h2 id="profileName">에코탐험가</h2>
@@ -543,7 +595,7 @@
 
           <div class="assets-card">
             <div class="asset-item">
-              <span class="asset-icon">🪙</span>
+              <span class="asset-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><circle cx="12" cy="12" r="10" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#D97706" stroke-width="1" opacity="0.5"/><text x="12" y="16" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">E</text></svg></span>
               <div class="asset-info">
                 <span class="asset-label">에코토큰</span>
                 <span class="asset-value" id="profileTokens">125</span>
@@ -551,7 +603,7 @@
             </div>
             <div class="asset-divider"></div>
             <div class="asset-item">
-              <span class="asset-icon">🏅</span>
+              <span class="asset-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><circle cx="12" cy="10" r="8" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/><path d="M9 10 L11 12 L15 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 18 L12 22 L17 18" stroke="#D97706" stroke-width="2" fill="#FBBF24"/></svg></span>
               <div class="asset-info">
                 <span class="asset-label">배지</span>
                 <span class="asset-value" id="profileBadges">3</span>
@@ -559,7 +611,7 @@
             </div>
             <div class="asset-divider"></div>
             <div class="asset-item">
-              <span class="asset-icon">⭐</span>
+              <span class="asset-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M12 2 L14.5 8.5 L22 9.5 L16.5 14.5 L18 22 L12 18.5 L6 22 L7.5 14.5 L2 9.5 L9.5 8.5Z" fill="#FBBF24" stroke="#D97706" stroke-width="1"/></svg></span>
               <div class="asset-info">
                 <span class="asset-label">NFT</span>
                 <span class="asset-value" id="profileNFTs">1</span>
@@ -571,22 +623,22 @@
             <h3 class="section-title">활동 통계</h3>
             <div class="stats-grid">
               <div class="stat-card">
-                <span class="stat-icon">🔍</span>
+                <span class="stat-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16 16 L21 21"/></svg></span>
                 <span class="stat-value" id="statDiscoveries">23</span>
                 <span class="stat-label">총 발견</span>
               </div>
               <div class="stat-card">
-                <span class="stat-icon">👣</span>
+                <span class="stat-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v-2a4 4 0 0 1 8 0v4"/><path d="M12 16v-2a4 4 0 0 1 8 0v4"/></svg></span>
                 <span class="stat-value" id="statSteps">45.2K</span>
                 <span class="stat-label">걸음 수</span>
               </div>
               <div class="stat-card">
-                <span class="stat-icon">🏞️</span>
+                <span class="stat-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20 L8 10 L14 16 L18 12 L22 20Z"/><circle cx="7" cy="6" r="2"/></svg></span>
                 <span class="stat-value" id="statParks">6</span>
                 <span class="stat-label">방문 공원</span>
               </div>
               <div class="stat-card">
-                <span class="stat-icon">✅</span>
+                <span class="stat-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
                 <span class="stat-value" id="statQuests">18</span>
                 <span class="stat-label">완료 퀘스트</span>
               </div>
@@ -617,7 +669,7 @@
           <button class="btn-icon btn-back" onclick="showScreen('home')">
             <span>←</span>
           </button>
-          <h1>🌍 나의 생태 기여</h1>
+          <h1><svg viewBox="0 0 24 24" width="20" height="20" fill="none" style="vertical-align: -3px; margin-right: 4px;"><circle cx="12" cy="12" r="10" fill="#064E3B" stroke="#10B981" stroke-width="1.5"/><path d="M6 10 Q8 6 12 7 Q14 8 13 11 Q12 14 8 14 Q6 13 6 10Z" fill="#10B981" opacity="0.7"/><path d="M14 8 Q18 7 19 12 Q18 16 15 16 Q13 15 14 12 Q15 10 14 8Z" fill="#10B981" opacity="0.5"/></svg>나의 생태 기여</h1>
           <div></div>
         </header>
 
@@ -626,7 +678,7 @@
           <div class="impact-hero-card">
             <div class="impact-hero-bg"></div>
             <div class="impact-hero-content">
-              <div class="impact-avatar">🌿</div>
+              <div class="impact-avatar"><svg viewBox="0 0 48 48" width="48" height="48" fill="none"><circle cx="24" cy="18" r="10" fill="#5DFFC2"/><path d="M6 44 Q6 30 24 27 Q42 30 42 44" fill="#5DFFC2"/></svg></div>
               <h2>에코탐험가님의 기여</h2>
               <p class="impact-subtitle">당신의 발견이 세상을 바꿉니다</p>
             </div>
@@ -635,21 +687,21 @@
           <!-- 핵심 임팩트 지표 -->
           <div class="impact-metrics">
             <div class="metric-card primary">
-              <div class="metric-icon">📊</div>
+              <div class="metric-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
               <div class="metric-value" id="totalDataPoints">23</div>
               <div class="metric-label">수집한 생태 데이터</div>
               <div class="metric-sublabel">국가 생물다양성 DB에 기여</div>
             </div>
 
             <div class="metric-card">
-              <div class="metric-icon">📚</div>
+              <div class="metric-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
               <div class="metric-value" id="researchCitations">3</div>
               <div class="metric-label">연구 인용</div>
               <div class="metric-sublabel">학술 논문에 활용</div>
             </div>
 
             <div class="metric-card">
-              <div class="metric-icon">🌱</div>
+              <div class="metric-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M12 22 V12 M12 12 C12 6 16 2 16 2 S8 6 12 12Z"/></svg></div>
               <div class="metric-value" id="carbonOffset">12kg</div>
               <div class="metric-label">탄소 저감 기여</div>
               <div class="metric-sublabel">도보 탐험으로 절약</div>
@@ -658,7 +710,7 @@
 
           <!-- 기여 타임라인 -->
           <section class="section">
-            <h3 class="section-title">📈 나의 기여 여정</h3>
+            <h3 class="section-title"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -3px; margin-right: 4px;"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>나의 기여 여정</h3>
             <div class="contribution-timeline">
               <div class="timeline-item">
                 <div class="timeline-dot"></div>
@@ -686,18 +738,18 @@
 
           <!-- 배지 획득 현황 -->
           <section class="section">
-            <h3 class="section-title">🏅 환경 영향력 배지</h3>
+            <h3 class="section-title"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" style="vertical-align: -3px; margin-right: 4px;"><circle cx="12" cy="10" r="8" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/><path d="M9 10 L11 12 L15 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 18 L12 22 L17 18" stroke="#D97706" stroke-width="2" fill="#FBBF24"/></svg>환경 영향력 배지</h3>
             <div class="impact-badges">
               <div class="impact-badge earned">
-                <span class="badge-icon">🌱</span>
+                <span class="badge-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M12 22 V12 M12 12 C12 6 16 2 16 2 S8 6 12 12Z"/></svg></span>
                 <span class="badge-name">시민 과학자</span>
               </div>
               <div class="impact-badge earned">
-                <span class="badge-icon">🔬</span>
+                <span class="badge-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></span>
                 <span class="badge-name">데이터 기여자</span>
               </div>
               <div class="impact-badge">
-                <span class="badge-icon">🌍</span>
+                <span class="badge-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><circle cx="12" cy="12" r="10" fill="#064E3B" stroke="#10B981" stroke-width="1.5"/><path d="M6 10 Q8 6 12 7 Q14 8 13 11 Q12 14 8 14 Q6 13 6 10Z" fill="#10B981" opacity="0.7"/><path d="M14 8 Q18 7 19 12 Q18 16 15 16 Q13 15 14 12 Q15 10 14 8Z" fill="#10B981" opacity="0.5"/></svg></span>
                 <span class="badge-name">환경 수호자</span>
               </div>
             </div>
@@ -710,25 +762,25 @@
     <!-- 하단 네비게이션 -->
     <nav class="bottom-nav">
       <button class="nav-item active" data-screen="home">
-        <span class="nav-icon">🏠</span>
+        <span class="nav-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
         <span class="nav-label">홈</span>
       </button>
       <button class="nav-item" data-screen="explore">
-        <span class="nav-icon">🗺️</span>
+        <span class="nav-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6 L9 3 L15 6 L21 3 V18 L15 21 L9 18 L3 21Z"/><path d="M9 3 V18"/><path d="M15 6 V21"/></svg></span>
         <span class="nav-label">탐험</span>
       </button>
       <button class="nav-item nav-center" onclick="startDiscovery()">
         <span class="nav-icon-large">
           <span class="camera-pulse"></span>
-          📷
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
         </span>
       </button>
       <button class="nav-item" data-screen="collection">
-        <span class="nav-icon">📚</span>
+        <span class="nav-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
         <span class="nav-label">도감</span>
       </button>
       <button class="nav-item" data-screen="quests">
-        <span class="nav-icon">🎯</span>
+        <span class="nav-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></span>
         <span class="nav-label">퀘스트</span>
       </button>
     </nav>
@@ -761,7 +813,7 @@
             노란 바탕에 검은 줄무늬가 특징인 나비입니다.
           </p>
           <div class="discovery-info" id="modalDiscoveryInfo">
-            <span>🗓️ 2026년 1월 20일 발견</span>
+            <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 2px;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 2026년 1월 20일 발견</span>
           </div>
         </div>
       </div>
@@ -769,7 +821,7 @@
 
     <!-- 토스트 알림 -->
     <div class="toast" id="toast">
-      <span class="toast-icon">✓</span>
+      <span class="toast-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
       <span class="toast-message" id="toastMessage">알림 메시지</span>
     </div>
 
@@ -781,7 +833,7 @@
         <div class="level-up-animation">
           <div class="level-badge xlarge">Lv.<span id="newLevel">6</span></div>
         </div>
-        <h2>🎉 레벨 업!</h2>
+        <h2><svg viewBox="0 0 24 24" width="24" height="24" fill="none" style="vertical-align: -4px; margin-right: 4px;"><path d="M12 2 C6 8 2 12 2 16 C2 20 6 22 12 22 C18 22 22 20 22 16 C22 12 18 8 12 2Z" fill="#FBBF24"/><path d="M8 14 L10 18 L12 14 L14 18 L16 14" stroke="#D97706" stroke-width="1.5" fill="none"/></svg> 레벨 업!</h2>
         <p>축하합니다! 새로운 레벨에 도달했습니다.</p>
         <button class="btn-primary" onclick="closeLevelUpModal()">확인</button>
       </div>
