@@ -1106,8 +1106,9 @@ body::before {
 }
 
 .home-header {
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, #0A4D3C 0%, #10B981 60%, #00D9A5 100%);
   color: white;
+  box-shadow: 0 4px 20px rgba(10, 77, 60, 0.3);
 }
 
 .home-header h1 {
@@ -1202,18 +1203,18 @@ body::before {
 
 /* ===== 프로필 카드 (히어로) ===== */
 .profile-card.hero-card {
-  background: var(--gradient-hero);
+  background: linear-gradient(160deg, #042f22 0%, #0A4D3C 25%, #0d6b4f 50%, #10B981 85%, #34d399 100%);
   border-radius: var(--radius-2xl);
-  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-md);
+  padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg);
   color: var(--text-white);
   margin-bottom: var(--spacing-lg);
   position: relative;
   overflow: hidden;
   box-shadow:
-    0 4px 24px rgba(0, 217, 165, 0.2),
-    0 16px 48px rgba(10, 77, 60, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+    0 8px 32px rgba(0, 217, 165, 0.25),
+    0 20px 60px rgba(10, 77, 60, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(93, 255, 194, 0.2);
 }
 
 /* 글로우 오버레이 */
@@ -1254,9 +1255,10 @@ body::before {
 }
 
 .avatar-large.animated-avatar {
-  width: 70px;
-  height: 70px;
+  width: 76px;
+  height: 76px;
   position: relative;
+  filter: drop-shadow(0 0 12px rgba(93, 255, 194, 0.5));
 }
 
 .avatar-emoji {
@@ -1301,8 +1303,10 @@ body::before {
 }
 
 .profile-details h2 {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .level-badge.animated-level {
@@ -1332,11 +1336,12 @@ body::before {
 }
 
 .xp-bar {
-  height: 10px;
-  background: rgba(255, 255, 255, 0.3);
+  height: 12px;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-full);
   overflow: hidden;
   margin-bottom: var(--spacing-xs);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .xp-progress {
@@ -1371,8 +1376,12 @@ body::before {
   align-items: center;
   gap: var(--spacing-sm);
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
   position: relative;
+  background: rgba(255, 215, 0, 0.12);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 215, 0, 0.25);
 }
 
 .token-coin {
@@ -1397,20 +1406,20 @@ body::before {
 
 /* ===== 임팩트 카드 ===== */
 .impact-summary-card {
-  background: var(--bg-secondary);
+  background: linear-gradient(135deg, #f0fdf9 0%, #ecfdf5 50%, #d1fae5 100%);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.12), 0 1px 3px rgba(0, 0, 0, 0.06);
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 2px solid transparent;
+  border: 1.5px solid rgba(16, 185, 129, 0.2);
 }
 
 .impact-summary-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   border-color: var(--primary);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.2), 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .impact-header {
@@ -1442,9 +1451,10 @@ body::before {
 
 .impact-stat .stat-num {
   display: block;
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--primary);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--forest);
+  letter-spacing: -0.02em;
 }
 
 .impact-stat .stat-label {
@@ -1476,8 +1486,9 @@ body::before {
 
 .section-header h3, .section-title {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 .section-header a {
@@ -1501,25 +1512,28 @@ body::before {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.25s var(--ease-out-expo);
+  border-left: 4px solid var(--primary);
 }
 
 .quest-item:hover {
   transform: translateX(4px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-left-color: var(--primary-dark);
 }
 
 .quest-icon {
   width: 48px;
   height: 48px;
-  background: var(--bg-primary);
-  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
 }
 
 .quest-info {
@@ -1588,21 +1602,22 @@ body::before {
 }
 
 .discovery-image {
-  width: 64px;
-  height: 64px;
-  background: var(--bg-secondary);
-  border-radius: var(--radius-md);
+  width: 68px;
+  height: 68px;
+  background: linear-gradient(145deg, #ffffff 0%, #f0fdf9 100%);
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+  font-size: 34px;
   margin: 0 auto var(--spacing-xs);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(16, 185, 129, 0.1);
+  transition: all 0.3s var(--ease-out-back);
 }
 
 .discovery-item:hover .discovery-image {
-  transform: scale(1.1);
+  transform: scale(1.12) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.2), 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
 
 .discovery-name {
@@ -1628,14 +1643,16 @@ body::before {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.25s var(--ease-out-expo);
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .park-item:hover {
   transform: translateX(4px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  border-color: rgba(16, 185, 129, 0.2);
 }
 
 .park-icon {
@@ -3381,21 +3398,21 @@ body::before {
 }
 
 .nav-icon-large {
-  width: 64px;
-  height: 64px;
-  background: var(--gradient-primary);
+  width: 66px;
+  height: 66px;
+  background: linear-gradient(145deg, #00D9A5 0%, #00B386 50%, #0A4D3C 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 28px;
   box-shadow:
-    0 4px 12px rgba(0, 217, 165, 0.3),
-    0 8px 24px rgba(0, 217, 165, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 6px 16px rgba(0, 217, 165, 0.4),
+    0 12px 32px rgba(0, 217, 165, 0.25),
+    inset 0 2px 0 rgba(255, 255, 255, 0.25);
   transition: all 0.4s var(--ease-out-expo);
   position: relative;
-  border: 3px solid white;
+  border: 3.5px solid white;
 }
 
 .camera-pulse {
@@ -4902,4 +4919,824 @@ body::before {
 /* ===== 화면 전환 부드러운 transition ===== */
 .screen {
   transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* ============================================= */
+/* ===== 홈 화면 대대적 UI/UX 개선 v2 ===== */
+/* ============================================= */
+
+/* --- 헤더 개선: 더 깊고 고급스러운 그라데이션 --- */
+.home-header {
+  background: linear-gradient(135deg, #042f22 0%, #0A4D3C 40%, #0d6b4f 70%, #10B981 100%);
+  box-shadow: 0 4px 24px rgba(4, 47, 34, 0.5), 0 1px 0 rgba(93, 255, 194, 0.15) inset;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.app-logo {
+  font-size: 24px !important;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #5DFFC2, #FFFFFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contest-mini-badge {
+  background: rgba(251, 191, 36, 0.25) !important;
+  color: #FFE566 !important;
+  border: 1px solid rgba(251, 191, 36, 0.35) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* --- 스크린 바디 배경: 미세한 텍스처 --- */
+#screen-home .screen-body {
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(0, 217, 165, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(99, 102, 241, 0.04) 0%, transparent 50%),
+    linear-gradient(180deg, #f0fdf9 0%, #f8fffe 30%, #ffffff 100%);
+}
+
+/* --- 프로필 카드: 프리미엄 글래스모피즘 --- */
+.profile-card.hero-card {
+  background: linear-gradient(155deg, #031d16 0%, #063b2b 20%, #0A4D3C 40%, #0f7a5a 65%, #10B981 85%, #34d399 100%);
+  border-radius: 28px;
+  padding: 28px 24px 24px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 8px 24px rgba(0, 217, 165, 0.2),
+    0 24px 48px rgba(10, 77, 60, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(93, 255, 194, 0.25);
+  position: relative;
+}
+
+.profile-card.hero-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(93, 255, 194, 0.2) 0%, transparent 70%);
+  border-radius: 0 28px 0 0;
+  pointer-events: none;
+}
+
+/* 아바타 강화 */
+.avatar-large.animated-avatar {
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(0 0 16px rgba(93, 255, 194, 0.6));
+}
+
+.avatar-ring {
+  border: 3px solid rgba(93, 255, 194, 0.6) !important;
+  box-shadow: 0 0 12px rgba(93, 255, 194, 0.3);
+}
+
+/* 프로필 텍스트 강화 */
+.profile-details h2 {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+}
+
+.level-badge.animated-level {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1)) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 5px 14px;
+  font-weight: 700;
+}
+
+/* XP 바 강화 */
+.xp-bar {
+  height: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.xp-progress {
+  background: linear-gradient(90deg, #FBBF24, #F59E0B, #FFD700);
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.5);
+}
+
+/* 토큰 강화 */
+.token-display {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(251, 191, 36, 0.12));
+  padding: 8px 16px;
+  border: 1.5px solid rgba(255, 215, 0, 0.35);
+  box-shadow: 0 2px 12px rgba(251, 191, 36, 0.15);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* --- 임팩트 카드: 개별 스탯을 카드로 분리 --- */
+.impact-summary-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f0fdf9 50%, #ecfdf5 100%);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 6px 24px rgba(16, 185, 129, 0.1);
+  border: 1.5px solid rgba(16, 185, 129, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.impact-summary-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0, 217, 165, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.impact-header h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--forest);
+  letter-spacing: -0.01em;
+}
+
+.impact-stat {
+  background: linear-gradient(145deg, #f8fffe, #f0fdf9);
+  border-radius: 16px;
+  padding: 14px 10px;
+  border: 1px solid rgba(16, 185, 129, 0.12);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.impact-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.impact-stat .stat-num {
+  font-size: 30px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #0A4D3C, #10B981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+
+.impact-stat .stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  margin-top: 4px;
+}
+
+.impact-cta {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white !important;
+  border-radius: var(--radius-full);
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 16px rgba(0, 217, 165, 0.3);
+  transition: all 0.3s ease;
+}
+
+.impact-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(0, 217, 165, 0.4);
+}
+
+/* --- 섹션 헤더: 강조 라인 추가 --- */
+.section-header {
+  position: relative;
+  padding-left: 14px;
+}
+
+.section-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+  border-radius: 4px;
+}
+
+.section-header h3, .section-title {
+  font-size: 19px;
+  font-weight: 900;
+  color: var(--forest);
+  letter-spacing: -0.02em;
+}
+
+.section-header a {
+  background: var(--primary-subtle);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.section-header a:hover {
+  background: rgba(0, 217, 165, 0.2);
+}
+
+/* --- 퀘스트 아이템: 카드형 디자인 강화 --- */
+.quest-item {
+  background: linear-gradient(135deg, #ffffff 0%, #fafffe 100%);
+  border-radius: 18px;
+  padding: 18px;
+  gap: 14px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.04);
+  border-left: 5px solid var(--primary);
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  border-right: 1px solid rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.quest-item:hover {
+  transform: translateX(6px);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    0 8px 28px rgba(16, 185, 129, 0.12);
+  border-left-color: var(--forest);
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf9 100%);
+}
+
+.quest-icon {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(145deg, #ecfdf5, #d1fae5);
+  border-radius: 16px;
+  font-size: 26px;
+  box-shadow:
+    0 3px 10px rgba(16, 185, 129, 0.15),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.quest-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--forest);
+}
+
+.quest-progress-bar {
+  height: 6px;
+  background: #e8f5f0;
+  border-radius: 6px;
+}
+
+.quest-progress-fill {
+  background: linear-gradient(90deg, #00D9A5, #10B981, #0A4D3C);
+  box-shadow: 0 0 8px rgba(0, 217, 165, 0.3);
+}
+
+.quest-reward span {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.1));
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  font-weight: 700;
+  font-size: 12px;
+  color: #b45309;
+}
+
+/* --- 발견 아이템: 더 생동감 있는 카드 --- */
+.discovery-item {
+  width: 88px;
+}
+
+.discovery-image {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(145deg, #ffffff, #ecfdf5);
+  border-radius: 22px;
+  font-size: 36px;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 0 0 1.5px rgba(16, 185, 129, 0.12),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.35s var(--ease-out-back);
+}
+
+.discovery-item:hover .discovery-image {
+  transform: scale(1.15) translateY(-4px);
+  box-shadow:
+    0 8px 24px rgba(16, 185, 129, 0.25),
+    0 0 0 2px rgba(16, 185, 129, 0.3);
+  background: linear-gradient(145deg, #ecfdf5, #d1fae5);
+}
+
+.discovery-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--forest);
+  margin-top: 2px;
+}
+
+/* --- 공원 아이템: 모던 카드 디자인 --- */
+.park-item {
+  background: linear-gradient(135deg, #ffffff, #fafffe);
+  border-radius: 18px;
+  padding: 16px 18px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.03),
+    0 4px 14px rgba(0, 0, 0, 0.04);
+  border: 1.5px solid rgba(16, 185, 129, 0.08);
+}
+
+.park-item:hover {
+  transform: translateX(6px);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    0 8px 28px rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.25);
+  background: linear-gradient(135deg, #ffffff, #f0fdf9);
+}
+
+.park-icon {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(145deg, #ecfdf5, #d1fae5);
+  border-radius: 16px;
+  font-size: 26px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12);
+}
+
+.park-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--forest);
+}
+
+/* --- 하단 네비게이션: 더 세련된 디자인 --- */
+.bottom-nav {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(16, 185, 129, 0.1);
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.06), 0 -8px 32px rgba(0, 0, 0, 0.03);
+}
+
+.nav-item.active {
+  color: var(--forest);
+}
+
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  border-radius: 0 0 4px 4px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+/* 카메라 버튼 강화 */
+.nav-icon-large {
+  background: linear-gradient(145deg, #00D9A5 0%, #0A9D7A 50%, #0A4D3C 100%) !important;
+  box-shadow:
+    0 4px 12px rgba(0, 217, 165, 0.4),
+    0 8px 24px rgba(0, 217, 165, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  border: 2px solid rgba(93, 255, 194, 0.3);
+}
+
+/* --- 퀘스트 리스트 gap 개선 --- */
+.quest-list {
+  gap: 12px;
+}
+
+.park-list {
+  gap: 12px;
+}
+
+/* --- 스크롤 영역 개선 --- */
+.discovery-preview {
+  gap: 12px;
+  padding: 4px 0 12px;
+}
+
+/* --- 전체 섹션 간격 개선 --- */
+#screen-home .screen-body > .section {
+  margin-bottom: 28px;
+}
+
+/* --- 히어로 카드 하단 행 --- */
+.hero-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.streak-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.2);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 700;
+  color: #a7f3d0;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+/* --- 퀵 액션 바 --- */
+.quick-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.quick-action-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 6px 10px;
+  background: white;
+  border: 1.5px solid rgba(0, 0, 0, 0.05);
+  border-radius: 18px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out-expo);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.quick-action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 217, 165, 0.15);
+  border-color: rgba(0, 217, 165, 0.3);
+}
+
+.quick-action-btn:active {
+  transform: scale(0.96);
+}
+
+.quick-action-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #00D9A5, #0A4D3C);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 217, 165, 0.3);
+}
+
+.quick-action-icon.explore-icon {
+  background: linear-gradient(145deg, #38BDF8, #1d4ed8);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+}
+
+.quick-action-icon.collection-icon {
+  background: linear-gradient(145deg, #a78bfa, #6366F1);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.quick-action-icon.ranking-icon {
+  background: linear-gradient(145deg, #FBBF24, #D97706);
+  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+}
+
+.quick-action-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* --- 주간 챌린지 배너 --- */
+.weekly-challenge-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #0A4D3C 0%, #0f7a5a 50%, #10B981 100%);
+  border-radius: 20px;
+  margin-bottom: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(10, 77, 60, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.weekly-challenge-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.weekly-challenge-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(10, 77, 60, 0.4);
+}
+
+.challenge-icon-wrap {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.challenge-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.challenge-tag {
+  font-size: 10px;
+  font-weight: 800;
+  color: #FBBF24;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.challenge-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  margin: 3px 0 8px;
+  line-height: 1.2;
+}
+
+.challenge-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.challenge-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.challenge-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FBBF24, #FFD700);
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
+}
+
+.challenge-progress-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+}
+
+.challenge-reward-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: rgba(251, 191, 36, 0.2);
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  flex-shrink: 0;
+}
+
+.challenge-reward-amount {
+  font-size: 14px;
+  font-weight: 800;
+  color: #FBBF24;
+}
+
+/* --- 임팩트 스탯 아이콘 --- */
+.stat-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(16, 185, 129, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 6px;
+}
+
+/* ============================================= */
+/* ===== 인트로 화면 전면 개편 ===== */
+/* ============================================= */
+
+/* 인트로 배경 - 더 깊고 선명한 그라데이션 */
+.intro-screen {
+  background: linear-gradient(160deg, #021a13 0%, #063b2b 25%, #0A4D3C 50%, #0f7a5a 80%, #10B981 100%);
+}
+
+.intro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 40px 32px;
+  height: 100%;
+  max-width: 400px;
+}
+
+/* 상단 공모전 배지 */
+.intro-top-badge {
+  position: absolute;
+  top: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  padding: 6px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 20;
+}
+
+.intro-top-badge span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* 중앙 히어로 */
+.intro-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 36px;
+  z-index: 10;
+}
+
+.intro-app-icon {
+  margin-bottom: 20px;
+  filter: drop-shadow(0 8px 24px rgba(0, 217, 165, 0.4));
+  animation: iconFloat 4s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.intro-app-icon svg {
+  border-radius: 18px;
+}
+
+.intro-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 42px !important;
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.04em;
+  margin-bottom: 8px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.intro-tagline {
+  font-family: 'Outfit', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: -0.01em;
+}
+
+/* 핵심 기능 3가지 */
+.intro-features {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  z-index: 10;
+}
+
+.intro-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 12px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 90px;
+  transition: all 0.3s ease;
+}
+
+.intro-feature:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+}
+
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #00D9A5, #0A4D3C);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 217, 165, 0.35);
+}
+
+.feature-icon-blue {
+  background: linear-gradient(145deg, #38BDF8, #1d4ed8);
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+}
+
+.feature-icon-gold {
+  background: linear-gradient(145deg, #FBBF24, #D97706);
+  box-shadow: 0 4px 14px rgba(251, 191, 36, 0.35);
+}
+
+.feature-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+/* 한줄 설명 */
+.intro-desc {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  margin-bottom: 32px;
+  z-index: 10;
+}
+
+/* 시작 버튼 개선 */
+.intro-start-btn {
+  width: 100%;
+  max-width: 280px;
+  padding: 16px 32px;
+  font-size: 17px;
+  font-weight: 800;
+  border-radius: 16px;
+  z-index: 10;
+}
+
+/* 가이드 투어 버튼 개선 */
+.guide-tour-btn {
+  margin-top: 14px;
+  z-index: 10;
+  opacity: 0.7;
+  font-size: 13px;
+}
+
+/* 불필요한 요소 숨기기 (서울 지도, 기존 contest-badge, logo-container) */
+.intro-map-animation,
+.contest-badge,
+.intro-logo-container,
+.intro-subtitle {
+  display: none !important;
+}
+
+/* 파티클 캔버스 투명도 낮추기 */
+.intro-particles {
+  opacity: 0.3;
 }

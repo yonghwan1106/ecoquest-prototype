@@ -24,39 +24,54 @@
   <!-- 인트로 스플래시 화면 -->
   <div id="introScreen" class="intro-screen">
     <div class="intro-content">
-      <!-- 파티클 배경 -->
+      <!-- 파티클 배경 (경량화) -->
       <canvas id="introParticles" class="intro-particles"></canvas>
 
-      <!-- 로고 애니메이션 -->
-      <div class="intro-logo-container">
-        <div class="intro-logo">
-          <div class="logo-leaf leaf-1"><svg viewBox="0 0 32 32" width="44" height="44" fill="none"><path d="M16 4C10 4 4 10 4 18c0 2 .5 3 1 4l1-1c2-4 6-8 12-10-4 4-7 9-8 14h2c1-5 4-10 9-14 1-1 2-2 3-2 0 0-1 6-5 10l1 1c4-3 7-8 7-13C28 7 22 4 16 4z" fill="#5DFFC2"/></svg></div>
-          <div class="logo-leaf leaf-2"><svg viewBox="0 0 32 32" width="36" height="36" fill="none"><path d="M6 26C6 26 8 6 26 4c0 0-2 8-8 14 6-2 10-6 10-6s-4 10-14 14c-2 0-4 0-6-2l-2 2z" fill="#2DD4A0" opacity="0.9"/></svg></div>
-          <div class="logo-leaf leaf-3"><svg viewBox="0 0 32 32" width="36" height="36" fill="none"><path d="M16 28V14M16 14c0-6 4-10 4-10s-8 2-8 10h8z" stroke="#5DFFC2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="#2DD4A0" fill-opacity="0.3"/></svg></div>
-          <div class="logo-circle"></div>
+      <!-- 상단: 공모전 배지 -->
+      <div class="intro-top-badge">
+        <span>조경비전 2050 공모전 출품작</span>
+      </div>
+
+      <!-- 중앙: 앱 아이덴티티 -->
+      <div class="intro-hero">
+        <div class="intro-app-icon">
+          <svg viewBox="0 0 64 64" width="72" height="72" fill="none">
+            <rect width="64" height="64" rx="18" fill="url(#iconGrad)"/>
+            <defs><linearGradient id="iconGrad" x1="0" y1="0" x2="64" y2="64"><stop offset="0%" stop-color="#5DFFC2"/><stop offset="100%" stop-color="#0A4D3C"/></linearGradient></defs>
+            <path d="M32 14C24 14 18 20 18 28c0 2 .5 3 1 4l1-1c2-4 5-7 10-9-3 4-5 8-6 12h2c1-4 3-8 7-11 1-1 2-2 3-2 0 0-1 5-4 9l1 1c3-3 6-7 6-11C40 18 36 14 32 14z" fill="white" opacity="0.95"/>
+            <circle cx="42" cy="22" r="5" fill="#FBBF24" opacity="0.9"/>
+            <path d="M22 42h20" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+            <path d="M26 46h12" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+          </svg>
         </div>
         <h1 class="intro-title">EcoQuest</h1>
-        <p class="intro-subtitle">도시 생태계를 탐험하세요</p>
+        <p class="intro-tagline">AI와 함께하는 도시 생태 탐험</p>
       </div>
 
-      <!-- 서울 지도 애니메이션 -->
-      <div class="intro-map-animation">
-        <svg viewBox="0 0 400 300" class="seoul-map-svg">
-          <path class="seoul-outline" d="M200,50 Q280,60 320,100 Q350,150 340,200 Q320,250 260,270 Q200,280 140,260 Q80,240 60,180 Q50,120 80,80 Q120,40 200,50 Z"/>
-          <circle class="hotspot hotspot-1" cx="200" cy="120" r="8"/>
-          <circle class="hotspot hotspot-2" cx="150" cy="160" r="6"/>
-          <circle class="hotspot hotspot-3" cx="250" cy="180" r="7"/>
-          <circle class="hotspot hotspot-4" cx="180" cy="200" r="5"/>
-          <circle class="hotspot hotspot-5" cx="220" cy="150" r="9"/>
-        </svg>
+      <!-- 핵심 기능 소개 (3가지) -->
+      <div class="intro-features">
+        <div class="intro-feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <span class="feature-label">AI로 생물 발견</span>
+        </div>
+        <div class="intro-feature">
+          <div class="feature-icon feature-icon-blue">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M3 6 L9 3 L15 6 L21 3 V18 L15 21 L9 18 L3 21Z"/><path d="M9 3 V18"/><path d="M15 6 V21"/></svg>
+          </div>
+          <span class="feature-label">도시 공원 탐험</span>
+        </div>
+        <div class="intro-feature">
+          <div class="feature-icon feature-icon-gold">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          </div>
+          <span class="feature-label">퀘스트 & 보상</span>
+        </div>
       </div>
 
-      <!-- 공모전 배지 -->
-      <div class="contest-badge">
-        <span class="badge-year">2050</span>
-        <span class="badge-text">조경 공모전</span>
-        <span class="badge-type">프로토타입</span>
-      </div>
+      <!-- 한줄 설명 -->
+      <p class="intro-desc">카메라로 주변 생물을 촬영하고, 퀘스트를 완료하며<br>도시 생태계 데이터에 기여하세요.</p>
 
       <!-- 시작 버튼 -->
       <button class="intro-start-btn" id="startAppBtn">
@@ -66,7 +81,7 @@
 
       <!-- 가이드 투어 버튼 -->
       <button class="guide-tour-btn" onclick="startGuideTour()">
-        <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></span>
+        <span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span>
         <span>심사위원용 3분 데모</span>
       </button>
     </div>
@@ -251,7 +266,7 @@
         </header>
 
         <div class="screen-body">
-          <!-- 사용자 프로필 카드 - 강화 -->
+          <!-- 프로필 카드 -->
           <div class="profile-card hero-card">
             <div class="hero-card-bg"></div>
             <div class="profile-info">
@@ -276,16 +291,71 @@
               </div>
               <span class="xp-text"><span id="userXp">450</span> / <span id="userXpNext">600</span> XP</span>
             </div>
-            <div class="token-display">
-              <div class="token-coin">
-                <span class="coin-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><circle cx="12" cy="12" r="10" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#D97706" stroke-width="1" opacity="0.5"/><text x="12" y="16" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">E</text></svg></span>
-                <span class="coin-shine"></span>
+            <div class="hero-card-bottom">
+              <div class="token-display">
+                <div class="token-coin">
+                  <span class="coin-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><circle cx="12" cy="12" r="10" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#D97706" stroke-width="1" opacity="0.5"/><text x="12" y="16" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">E</text></svg></span>
+                  <span class="coin-shine"></span>
+                </div>
+                <span id="userTokens">125</span> 에코토큰
               </div>
-              <span id="userTokens">125</span> 에코토큰
+              <div class="streak-badge">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z" fill="#10B981"/></svg>
+                <span>7일 연속</span>
+              </div>
             </div>
           </div>
 
-          <!-- 임팩트 카드 (NEW) -->
+          <!-- 퀵 액션 바 -->
+          <div class="quick-actions">
+            <button class="quick-action-btn" onclick="startDiscovery()">
+              <div class="quick-action-icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </div>
+              <span class="quick-action-label">AI 발견</span>
+            </button>
+            <button class="quick-action-btn" onclick="showScreen('explore')">
+              <div class="quick-action-icon explore-icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6 L9 3 L15 6 L21 3 V18 L15 21 L9 18 L3 21Z"/><path d="M9 3 V18"/><path d="M15 6 V21"/></svg>
+              </div>
+              <span class="quick-action-label">지도 탐험</span>
+            </button>
+            <button class="quick-action-btn" onclick="showScreen('collection')">
+              <div class="quick-action-icon collection-icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+              </div>
+              <span class="quick-action-label">도감</span>
+            </button>
+            <button class="quick-action-btn" onclick="showScreen('leaderboard')">
+              <div class="quick-action-icon ranking-icon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><rect x="6" y="4" width="12" height="8" rx="1"/><path d="M12 12v4"/><path d="M8 20h8"/><path d="M10 16h4"/></svg>
+              </div>
+              <span class="quick-action-label">랭킹</span>
+            </button>
+          </div>
+
+          <!-- 주간 챌린지 배너 -->
+          <div class="weekly-challenge-banner" onclick="showScreen('quests')">
+            <div class="challenge-icon-wrap">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+            </div>
+            <div class="challenge-info">
+              <span class="challenge-tag">WEEKLY CHALLENGE</span>
+              <h4 class="challenge-title">봄맞이 생태 탐험 챌린지</h4>
+              <div class="challenge-progress-wrap">
+                <div class="challenge-progress-bar">
+                  <div class="challenge-progress-fill" style="width: 60%"></div>
+                </div>
+                <span class="challenge-progress-text">3/5 완료</span>
+              </div>
+            </div>
+            <div class="challenge-reward-badge">
+              <span class="challenge-reward-amount">+50</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none"><circle cx="12" cy="12" r="10" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/><text x="12" y="16" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">E</text></svg>
+            </div>
+          </div>
+
+          <!-- 임팩트 카드 -->
           <div class="impact-summary-card" onclick="showScreen('impact')">
             <div class="impact-header">
               <span class="impact-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><circle cx="12" cy="12" r="10" fill="#064E3B" stroke="#10B981" stroke-width="1.5"/><path d="M6 10 Q8 6 12 7 Q14 8 13 11 Q12 14 8 14 Q6 13 6 10Z" fill="#10B981" opacity="0.7"/><path d="M14 8 Q18 7 19 12 Q18 16 15 16 Q13 15 14 12 Q15 10 14 8Z" fill="#10B981" opacity="0.5"/></svg></span>
@@ -293,21 +363,30 @@
             </div>
             <div class="impact-stats-mini">
               <div class="impact-stat">
+                <div class="stat-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16 16 L21 21"/></svg>
+                </div>
                 <span class="stat-num" id="impactDiscoveries">23</span>
                 <span class="stat-label">발견 데이터</span>
               </div>
               <div class="impact-stat">
+                <div class="stat-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+                </div>
                 <span class="stat-num" id="impactResearch">3</span>
                 <span class="stat-label">연구 기여</span>
               </div>
               <div class="impact-stat">
+                <div class="stat-icon-wrap">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round"><path d="M2 22 L12 12 L22 22"/><path d="M12 12 C12 6 7 2 7 2"/><path d="M12 12 C12 6 17 2 17 2"/></svg>
+                </div>
                 <span class="stat-num" id="impactCarbon">12kg</span>
                 <span class="stat-label">탄소 저감</span>
               </div>
             </div>
             <div class="impact-cta">
               <span>자세히 보기</span>
-              <span>→</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </div>
           </div>
 
